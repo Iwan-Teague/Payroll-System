@@ -312,6 +312,17 @@ public class Employee {
         return jobRole;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setJobCategory(JobCategory jobCategory){
+        this.jobCategory = jobCategory;
+    }
+
+    public void setJobRole(JobType jobRole){
+        this.jobRole = jobRole;
+    }
     // Check if the jobRole is valid for the given jobCategory
     private boolean isRoleValidForCategory(JobCategory jobCategory, JobType jobRole) {
         for (JobType validJobRole : jobCategory.getJobTypes()) {

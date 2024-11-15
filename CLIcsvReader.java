@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class csvReader {
+public class CLIcsvReader {
 
     String filePath = "default file path";
     //
