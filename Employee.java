@@ -1,5 +1,6 @@
 public class Employee {
 
+    private String employeeID;
     private String name;
     private JobCategory jobCategory;
     private JobType jobRole;
@@ -288,10 +289,11 @@ public class Employee {
 
     // Constructor
     //pull data from excel sheet and pass name, jobCategory and jobRole. jobCategory and jobRole are enums.
-    public Employee(String name, JobCategory jobCategory, JobType jobRole) {
+    public Employee(String employeeID, String name, JobCategory jobCategory, JobType jobRole) {
         if (!isRoleValidForCategory(jobCategory, jobRole)) {
             throw new IllegalArgumentException("Invalid JobRole for the given JobCategory");
         }
+        this.employeeID = employeeID;
         this.name = name;
         this.jobCategory = jobCategory;
         this.jobRole = jobRole;
@@ -335,8 +337,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "name='" + name + '\'' +
+        return "Employee{EmployeeID " + employeeID +
+                ", name='" + name + '\'' +
                 ", jobCategory=" + jobCategory +
                 ", jobRole=" + jobRole +
                 '}';
