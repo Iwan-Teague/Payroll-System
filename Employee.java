@@ -1,8 +1,10 @@
 public class Employee {
 
+    private String PPSno;
     private String name;
     private JobCategory jobCategory;
     private JobType jobRole;
+    private int payScale;
 
     //method promotion(employee)  method made by SaifKh
     //takes employee  takes his current role and changes it to role above him
@@ -309,18 +311,25 @@ public class Employee {
 
     // Constructor
     //pull data from excel sheet and pass name, jobCategory and jobRole. jobCategory and jobRole are enums.
-    public Employee(String name, JobCategory jobCategory, JobType jobRole) {
+    public Employee( String name, String PPSno, JobCategory jobCategory, JobType jobRole, int payScale) {
         if (!isRoleValidForCategory(jobCategory, jobRole)) {
             throw new IllegalArgumentException("Invalid JobRole for the given JobCategory");
         }
+        this.PPSno = PPSno;
         this.name = name;
         this.jobCategory = jobCategory;
         this.jobRole = jobRole;
+        this.payScale = payScale;
     }
 
     // Getter for name
     public String getName() {
         return name;
+    }
+
+    // Getter for PPSno
+    public String getPPSno() {
+        return PPSno;
     }
 
     // Getter for jobCategory
@@ -333,17 +342,35 @@ public class Employee {
         return jobRole;
     }
 
+    // Getter for payScale
+    public int getPayScale() {
+        return payScale;
+    }
+    
+    // Setter for name
     public void setName(String name){
         this.name = name;
     }
 
+    // Setter for PPSno
+    public void setPPSno(String PPSno){
+        this.PPSno = PPSno;
+    }
+
+    // Setter for jobCategory
     public void setJobCategory(JobCategory jobCategory){
         this.jobCategory = jobCategory;
     }
 
+    // Setter for jobRole
     public void setJobRole(JobType jobRole){
         this.jobRole = jobRole;
     }
+    // Setter for payScale
+    public void setPayScale(int payScale){
+        this.payScale = payScale;
+    }
+
     // Check if the jobRole is valid for the given jobCategory
     private boolean isRoleValidForCategory(JobCategory jobCategory, JobType jobRole) {
         for (JobType validJobRole : jobCategory.getJobTypes()) {
@@ -356,10 +383,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "name='" + name + '\'' +
-                ", jobCategory=" + jobCategory +
-                ", jobRole=" + jobRole +
-                '}';
+        return "Employee{name= '" + name +",\tPPSno= " + PPSno  + ",\tjobCategory= " + jobCategory + ",\t\tjobRole= " + jobRole + '}';
     }
 }
