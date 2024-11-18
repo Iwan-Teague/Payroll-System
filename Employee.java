@@ -1,8 +1,31 @@
 public class Employee {
 
+    private String PPSno;
     private String name;
     private JobCategory jobCategory;
     private JobType jobRole;
+    private int payScale;
+
+    //method promotion(employee)  method made by SaifKh
+    //takes employee  takes his current role and changes it to role above him
+    //example: professorFormerlyAssociateProfessor become fullProffessor
+    //change scale point to 1  change salary to new role
+    //exception  if job role is at maxinimum return error message
+    public void promotion(Employee employee) {
+        int currentOrdinal = employee.getJobRole().ordinal();
+        //highest job positions ordinal values  in each category are : 0 2 8 15 19 25 34 39 49 52 55 61
+        //check if job role is the highest in the job category
+        if(currentOrdinal == 0 || currentOrdinal == 2 ||currentOrdinal == 8 ||currentOrdinal == 15 ||currentOrdinal == 19 ||currentOrdinal == 25 ||currentOrdinal == 34 ||currentOrdinal == 49 ||currentOrdinal == 52 ||currentOrdinal == 55 ||currentOrdinal == 61){
+            throw new IllegalArgumentException("current Job Role is the highest in the category ");
+        }else {
+            // well be changing job role Via changing ordinal value  in enum every constant has enum value in our case the more senior role has a lower ordinal value
+            int newOrdinal = currentOrdinal - 1;
+            JobType newRole = JobType.values()[newOrdinal];
+            employee.setJobRole(newRole);
+            System.out.println("New Job Role: " + newRole);
+        }
+    }
+
 
     // Enum to store JobCategory, that stores a unique enum JobType per JobCategory enum
     public enum JobCategory {
@@ -288,18 +311,25 @@ public class Employee {
 
     // Constructor
     //pull data from excel sheet and pass name, jobCategory and jobRole. jobCategory and jobRole are enums.
-    public Employee(String name, JobCategory jobCategory, JobType jobRole) {
+    public Employee( String name, String PPSno, JobCategory jobCategory, JobType jobRole, int payScale) {
         if (!isRoleValidForCategory(jobCategory, jobRole)) {
             throw new IllegalArgumentException("Invalid JobRole for the given JobCategory");
         }
+        this.PPSno = PPSno;
         this.name = name;
         this.jobCategory = jobCategory;
         this.jobRole = jobRole;
+        this.payScale = payScale;
     }
 
     // Getter for name
     public String getName() {
         return name;
+    }
+
+    // Getter for PPSno
+    public String getPPSno() {
+        return PPSno;
     }
 
     // Getter for jobCategory
@@ -310,6 +340,35 @@ public class Employee {
     // Getter for jobRole
     public JobType getJobRole() {
         return jobRole;
+    }
+
+    // Getter for payScale
+    public int getPayScale() {
+        return payScale;
+    }
+    
+    // Setter for name
+    public void setName(String name){
+        this.name = name;
+    }
+
+    // Setter for PPSno
+    public void setPPSno(String PPSno){
+        this.PPSno = PPSno;
+    }
+
+    // Setter for jobCategory
+    public void setJobCategory(JobCategory jobCategory){
+        this.jobCategory = jobCategory;
+    }
+
+    // Setter for jobRole
+    public void setJobRole(JobType jobRole){
+        this.jobRole = jobRole;
+    }
+    // Setter for payScale
+    public void setPayScale(int payScale){
+        this.payScale = payScale;
     }
 
     // Check if the jobRole is valid for the given jobCategory
@@ -324,10 +383,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "name='" + name + '\'' +
-                ", jobCategory=" + jobCategory +
-                ", jobRole=" + jobRole +
-                '}';
+        return "Employee{name= '" + name +",\tPPSno= " + PPSno  + ",\tjobCategory= " + jobCategory + ",\t\tjobRole= " + jobRole + '}';
     }
 }
