@@ -6,12 +6,9 @@ public class TesterClass {
     public static void main(String[] args) {
         SimpleCSVReader reader = new SimpleCSVReader();
         try{
-            List<String> employees = reader.readCSV("Employees.csv");
+            List<Employee> employees = reader.readCSV("Employees.csv");
 
-            for (String line : employees) {
-
-                EmployeeMapper employeeMapper = new EmployeeMapper();
-                Employee employee = employeeMapper.fromCSV(line);
+            for (Employee employee : employees) {
                 System.out.println(employee);
             }
         }  catch (IOException e) {
