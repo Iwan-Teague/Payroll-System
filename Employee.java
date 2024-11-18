@@ -306,6 +306,11 @@ public class Employee {
         return name;
     }
 
+    // Getter for PPSno
+    public String getPPSno() {
+        return PPSno;
+    }
+
     // Getter for jobCategory
     public JobCategory getJobCategory() {
         return jobCategory;
@@ -316,17 +321,35 @@ public class Employee {
         return jobRole;
     }
 
+    // Getter for payScale
+    public int getPayScale() {
+        return payScale;
+    }
+    
+    // Setter for name
     public void setName(String name){
         this.name = name;
     }
 
+    // Setter for PPSno
+    public void setPPSno(String PPSno){
+        this.PPSno = PPSno;
+    }
+
+    // Setter for jobCategory
     public void setJobCategory(JobCategory jobCategory){
         this.jobCategory = jobCategory;
     }
 
+    // Setter for jobRole
     public void setJobRole(JobType jobRole){
         this.jobRole = jobRole;
     }
+    // Setter for payScale
+    public void setPayScale(int payScale){
+        this.payScale = payScale;
+    }
+
     // Check if the jobRole is valid for the given jobCategory
     private boolean isRoleValidForCategory(JobCategory jobCategory, JobType jobRole) {
         for (JobType validJobRole : jobCategory.getJobTypes()) {
