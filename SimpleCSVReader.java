@@ -12,19 +12,20 @@ public class SimpleCSVReader {
      * @return List of lines from the CSV file.
      * @throws IOException If an error occurs while reading the file.
      */
-    public List<String> readCSV(String filePath) throws IOException {
-        List<String> lines = new ArrayList<>();
+    public List<Employee> readCSV(String filePath) throws IOException {
+        List<Employee> employees = new ArrayList<>();
+        EmployeeMapper employeeMapper = new EmployeeMapper();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             br.readLine();
 
             while ((line = br.readLine()) != null) {
-                lines.add(line);
+                employees.add(employeeMapper.fromCSV(line));
             }
         }
 
-        return lines;
+        return employees;
     }
 }
 
