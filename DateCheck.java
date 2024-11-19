@@ -5,6 +5,11 @@ public class DateCheck {
     private boolean completedPayslips = false;
     private boolean completedPromotion = false;
 
+    public DateCheck() {
+        runPayslips();
+        runPromotion();
+    }
+
     private String getFormattedDate(String pattern) {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
@@ -22,7 +27,7 @@ public class DateCheck {
         };
     }
 
-    public void runPayslips() {
+    private void runPayslips() {
         if ((check("payslip") == true) && (completedPayslips == false)) {
             PayslipGenerator payslipGenerator = new PayslipGenerator();
             payslipGenerator.writeCsv();
@@ -32,7 +37,7 @@ public class DateCheck {
         }
     }
 
-    public void runPromotion() {
+    private void runPromotion() {
         if ((check("promotion") == true) && (completedPromotion == false)) {
             PayscalePromoter payscalePromoter = new PayscalePromoter();
             payscalePromoter.writeToCSV();
