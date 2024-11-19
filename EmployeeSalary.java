@@ -1,94 +1,74 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-
-class PayScale {
-    String category;
-    String role;
-    int payScale;
-    double rate;
-
-    public PayScale(String category, String role, int payScale, double rate) {
-        this.category = category;
-        this.role = role;
-        this.payScale = payScale;
-        this.rate = rate;
-    }
-}
-
-// store employee data and payscale dar=ta in array lists
 public class EmployeeSalary {
-    private List<Employee> employees = new ArrayList<>();
-    private List<PayScale> payScales = new ArrayList<>();
 
-    // put employee data from Employees.csv in arraylist
-    public void loadEmployees(String filePath) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            // Skip the header
-            String line = br.readLine();
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                String name = parts[0].trim();
-                String ppsNo = parts[1].trim();
-                Employee.JobCategory category = Employee.JobCategory.valueOf(parts[2].trim());
-                Employee.JobType role = Employee.JobType.valueOf(parts[3].trim());
-                int payScale = Integer.parseInt(parts[4].trim());
-                employees.add(new Employee(name, ppsNo, category, role, payScale));
-            }
-        }
-    }
-
-    // put salary data from ULPayScales.csv in payScale arraylist
-    public void loadPayScales(String filePath) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            // Skip the header
-            String line = br.readLine();
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                String category = parts[0].trim();
-                String role = parts[1].trim();
-                int payScale = Integer.parseInt(parts[2].trim());
-                double rate = Double.parseDouble(parts[3].replace("\u20ac", "").replace(",", "").trim());
-                payScales.add(new PayScale(category, role, payScale, rate));
-            }
-        }
-    }
-
-    // Calculate the salary for an employee
-    public double getSalary(Employee employee) {
-        for (PayScale ps : payScales) {
-            if (ps.category.equals(employee.getJobCategory().name()) &&
-                    ps.role.equals(employee.getJobRole().name()) &&
-                    ps.payScale == employee.getPayScale()) {
-                return ps.rate;
-            }
-        }
-        throw new IllegalArgumentException("PayScale not found for: " + employee.getName());
-    }
-
-    // Print salaries for all employees
-    public void printSalaries() {
-        for (Employee emp : employees) {
-            try {
-                double salary = getSalary(emp);
-                System.out.println(emp.getName() + "'s Salary: €" + salary);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Error calculating salary for " + emp.getName() + ": " + e.getMessage());
-            }
-        }
-    }
+    // A map to store the pay scale data (department and role mapped to their corresponding pay scale)
+    private static Map<String, Integer> payScaleMap = new HashMap<>();
 
     public static void main(String[] args) {
-        EmployeeSalary manager = new EmployeeSalary();
         try {
-            // Load data from CSV files
-            manager.loadEmployees("Employees.csv");
-            manager.loadPayScales("ULPayScales.csv");
+            // Read pay scales from ULPayScales.csv and load them into the map
+            loadPayScales("ULPayScales.csv");
 
-            // Print salaries for all employees
-            manager.printSalaries();
+            // Read employee data from Employees.csv and calculate their salary
+            csvReader reader = new csvReader();
+            List<Employee> employees = reader.readCSV("Employees.csv");
+
+            // For each employee, retrieve the pay scale and calculate the salary
+            for (Employee employee : employees) {
+                String department = employee.getJobCategory().toString().toLowerCase(); // Convert job category to string
+                String role = employee.getJobRole().toString().toLowerCase(); // Convert job role to string
+
+                String key = department + "," + role;
+                Integer payScale = payScaleMap.get(key);
+
+                if (payScale != null) {
+                    System.out.println("Employee: " + employee.getName() +
+                            ", Role: " + employee.getJobRole() +
+                            ", PayScale: " + payScale);
+                } else {
+                    System.out.println("No pay scale found for: " + employee.getName());
+                }
+            }
         } catch (IOException e) {
-            System.out.println("Error loading data: " + e.getMessage());
+            e.printStackTrace();
         }
+    }
+
+    // Method to load pay scales from a CSV file
+    private static void loadPayScales(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line;
+
+        // Skip the header line
+        br.readLine();
+
+        // Read each line and populate the pay scale map
+        while ((line = br.readLine()) != null) {
+            String[] values = line.split(",");
+            if (values.length >= 3) {
+                String category = values[0].trim().toLowerCase(); // Trim and convert to lower case
+                String role = values[1].trim().toLowerCase(); // Trim and convert to lower case
+                String scalePointStr = values[2].trim(); // Trim to remove extra spaces
+                int scalePoint = 0;
+
+                try {
+                    // Attempt to parse the scale point as an integer
+                    scalePoint = Integer.parseInt(scalePointStr);
+                } catch (NumberFormatException e) {
+                    System.out.println("Error parsing scale point for: " + category + " - " + role);
+                }
+
+                String key = category + "," + role;
+                payScaleMap.put(key, scalePoint);
+            }
+        }
+
+        br.close();
     }
 }
