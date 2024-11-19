@@ -33,10 +33,19 @@ public class EmployeeSalary {
                 String rate = rateMap.get(key);
 
                 if (payScale != null && rate != null) {
+                    // Convert rate from string to integer for calculation
+                    int salary = Integer.parseInt(rate);
+
+                    // Calculate USC and PRSI as strings
+                    String usc = calculateUSC(salary);
+                    String prsi = calculatePRSI(salary);
+
                     System.out.println("Employee: " + employee.getName() +
                             ", Role: " + employee.getJobRole() +
                             ", PayScale: " + payScale +
-                            ", Rate: " + rate);
+                            ", Rate: " + rate +
+                            ", USC: " + usc +
+                            ", PRSI: " + prsi);
                 } else {
                     System.out.println("No pay scale or rate found for: " + employee.getName());
                 }
@@ -107,8 +116,32 @@ public class EmployeeSalary {
         return values.toArray(new String[0]);
     }
 
-    // Helper method to clean the rate string (remove commas)
+    // Helper method to clean the rate string (remove currency symbols and commas)
     private static String cleanRate(String rate) {
-        return rate.replace(",", "").trim(); // Remove commas and trim spaces
+        return rate.replace("€", "").replace(",", "").trim(); // Remove € symbol, commas, and trim spaces
+    }
+
+
+    // Method to calculate the USC based on the salary and return it as a string
+    private static String calculateUSC(double salary) {
+        int usc = 0;
+
+        if (salary <= 12012) {
+            usc = (int) (salary * 0.005); // 0.5% for income up to €12,012
+        } else if (salary <= 25760) {
+            usc = (int) (12012 * 0.005 + (salary - 12012) * 0.02); // 2% for income from €12,012.01 to €25,760
+        } else if (salary <= 70044) {
+            usc = (int) (12012 * 0.005 + (25760 - 12012) * 0.02 + (salary - 25760) * 0.04); // 4% for income from €25,760.01 to €70,044
+        } else {
+            usc = (int) (12012 * 0.005 + (25760 - 12012) * 0.02 + (70044 - 25760) * 0.04 + (salary - 70044) * 0.08); // 8% for income over €70,044.01
+        }
+
+        return Integer.toString(usc); // Return USC as a string
+    }
+
+    // Method to calculate the PRSI (4.1% of salary) and return it as a string
+    private static String calculatePRSI(double salary) {
+        int prsi = (int) (salary * 0.041); // PRSI is 4.1% of salary
+        return Integer.toString(prsi); // Return PRSI as a string
     }
 }
