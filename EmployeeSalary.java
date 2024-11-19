@@ -13,29 +13,32 @@ public class EmployeeSalary {
 
     public static void main(String[] args) {
         try {
+            // Load pay scales and rates from the CSV file
             loadPayScalesAndRates("ULPayScales.csv");
 
+            // Read employee data from CSV
             csvReader reader = new csvReader();
             List<Employee> employees = reader.readCSV("Employees.csv");
 
+            // Process each employee
             for (Employee employee : employees) {
                 String department = employee.getJobCategory().toString().toLowerCase();
                 String role = employee.getJobRole().toString().toLowerCase();
 
-                String key = department + "," + role;
-                Integer payScale = payScaleMap.get(key);
-                String rate = rateMap.get(key);
+                // Retrieve pay scale and rate
+                Integer payScale = getPayScale(department, role);
+                String rate = getRate(department, role);
 
                 if (payScale != null && rate != null) {
                     int salary = Integer.parseInt(rate);
 
+                    // Calculate taxes and after-tax salary
                     String usc = calculateUSC(salary);
                     String prsi = calculatePRSI(salary);
                     String paye = calculatePAYE(salary);
+                    int afterTaxSalary = salary - Integer.parseInt(usc) - Integer.parseInt(prsi) - Integer.parseInt(paye);
 
-                    // Calculate after-tax salary
-                    int afterTax = salary - Integer.parseInt(usc) - Integer.parseInt(prsi) - Integer.parseInt(paye);
-
+                    // Print employee details
                     System.out.println("Employee: " + employee.getName() +
                             ", Role: " + employee.getJobRole() +
                             ", PayScale: " + payScale +
@@ -43,7 +46,7 @@ public class EmployeeSalary {
                             ", USC: " + usc +
                             ", PRSI: " + prsi +
                             ", PAYE: " + paye +
-                            ", After-Tax Salary: " + afterTax);
+                            ", After-Tax Salary: " + afterTaxSalary);
                 } else {
                     System.out.println("No pay scale or rate found for: " + employee.getName());
                 }
@@ -53,12 +56,15 @@ public class EmployeeSalary {
         }
     }
 
+    // Load pay scales and rates from the CSV file
     private static void loadPayScalesAndRates(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line;
 
+        // Skip the header line
         br.readLine();
 
+        // Process each line in the CSV
         while ((line = br.readLine()) != null) {
             String[] values = parseCSVLine(line);
             if (values.length >= 4) {
@@ -67,15 +73,13 @@ public class EmployeeSalary {
                 String scalePointStr = values[2].trim();
                 String rateStr = values[3];
 
-                int scalePoint = 0;
-                try {
-                    scalePoint = Integer.parseInt(scalePointStr);
-                } catch (NumberFormatException e) {
-                    System.out.println("Error parsing scale point for: " + category + " - " + role);
-                }
+                // Parse the scale point, defaulting to 0 if it cannot be parsed
+                int scalePoint = parseInteger(scalePointStr);
 
+                // Clean the rate (removes non-numeric characters like "€")
                 String cleanedRate = cleanRate(rateStr);
 
+                // Create a key for the department-role pair
                 String key = category + "," + role;
                 payScaleMap.put(key, scalePoint);
                 rateMap.put(key, cleanedRate);
@@ -85,6 +89,7 @@ public class EmployeeSalary {
         br.close();
     }
 
+    // Parse a line of CSV data into an array of strings
     private static String[] parseCSVLine(String line) {
         StringBuilder value = new StringBuilder();
         boolean insideQuote = false;
@@ -104,11 +109,22 @@ public class EmployeeSalary {
         return values.toArray(new String[0]);
     }
 
+    // Clean the rate string by removing non-numeric characters
     private static String cleanRate(String rate) {
         return rate.replace("€", "").replace(",", "").trim();
     }
 
-    private static String calculateUSC(double salary) {
+    // Parse integer and return default value 0 if not valid
+    private static int parseInteger(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    // Calculate the USC tax based on salary
+    public static String calculateUSC(double salary) {
         int usc = 0;
 
         if (salary <= 12012) {
@@ -124,12 +140,14 @@ public class EmployeeSalary {
         return Integer.toString(usc);
     }
 
-    private static String calculatePRSI(double salary) {
+    // Calculate the PRSI tax based on salary
+    public static String calculatePRSI(double salary) {
         int prsi = (int) (salary * 0.041);
         return Integer.toString(prsi);
     }
 
-    private static String calculatePAYE(double salary) {
+    // Calculate the PAYE tax based on salary
+    public static String calculatePAYE(double salary) {
         int paye = 0;
 
         if (salary <= 42000) {
@@ -139,5 +157,17 @@ public class EmployeeSalary {
         }
 
         return Integer.toString(paye);
+    }
+
+    // Static getter for payScaleMap
+    public static Integer getPayScale(String department, String role) {
+        String key = department + "," + role;
+        return payScaleMap.get(key);
+    }
+
+    // Static getter for rateMap
+    public static String getRate(String department, String role) {
+        String key = department + "," + role;
+        return rateMap.get(key);
     }
 }
