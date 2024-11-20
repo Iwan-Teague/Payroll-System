@@ -5,6 +5,12 @@ public class Employee {
     private JobCategory jobCategory;
     private JobType jobRole;
     private int payScale;
+    private String userType;
+    private String salary;
+    private String usc;
+    private String prsi;
+    private String paye;
+    private int afterTaxSalary;
 
     //method promotion(employee)  method made by SaifKh
     //takes employee  takes his current role and changes it to role above him
@@ -347,6 +353,26 @@ public class Employee {
         return payScale;
     }
 
+    public String getSalary() {
+        return salary;
+    }
+
+    public String getUSC() {
+        return usc;
+    }
+
+    public String getPRSI() {
+        return prsi;
+    }
+
+    public String getPAYE() {
+        return paye;
+    }
+
+    public int getAfterTaxSalary() {
+        return afterTaxSalary;
+    }
+
     // Setter for name
     public void setName(String name){
         this.name = name;
@@ -369,6 +395,26 @@ public class Employee {
     // Setter for payScale
     public void setPayScale(int payScale){
         this.payScale = payScale;
+    }
+
+    public void setSalary(String salary){
+        this.salary = salary;
+    }
+
+    public void setUSC(String USC){
+        this.usc = USC;
+    }
+
+    public void setPRSI(String PRSI){
+        this.prsi = PRSI;
+    }
+
+    public void setPAYE(String PAYE){
+        this.paye = PAYE;
+    }
+
+    public void setAfterTaxSalary(int afterTaxSalary){
+        this.afterTaxSalary = afterTaxSalary;
     }
 
     // Check if the jobRole is valid for the given jobCategory

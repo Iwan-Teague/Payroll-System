@@ -32,21 +32,18 @@ public class EmployeeSalary {
                 if (payScale != null && rate != null) {
                     int salary = Integer.parseInt(rate);
 
-                    // Calculate taxes and after-tax salary
-                    String usc = calculateUSC(salary);
-                    String prsi = calculatePRSI(salary);
-                    String paye = calculatePAYE(salary);
-                    int afterTaxSalary = salary - Integer.parseInt(usc) - Integer.parseInt(prsi) - Integer.parseInt(paye);
+                    // Set tax details and after-tax salary (call the new method)
+                    setTaxDetailsAndSalary(employee, salary);
 
                     // Print employee details
                     System.out.println("Employee: " + employee.getName() +
                             ", Role: " + employee.getJobRole() +
                             ", PayScale: " + payScale +
                             ", Rate: " + rate +
-                            ", USC: " + usc +
-                            ", PRSI: " + prsi +
-                            ", PAYE: " + paye +
-                            ", After-Tax Salary: " + afterTaxSalary);
+                            ", USC: " + employee.getUSC() +
+                            ", PRSI: " + employee.getPRSI() +
+                            ", PAYE: " + employee.getPAYE() +
+                            ", After-Tax Salary: " + employee.getAfterTaxSalary());
                 } else {
                     System.out.println("No pay scale or rate found for: " + employee.getName());
                 }
@@ -54,6 +51,23 @@ public class EmployeeSalary {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    // Method to set tax details and after-tax salary for an employee
+    private static void setTaxDetailsAndSalary(Employee employee, int salary) {
+        // Calculate taxes
+        String usc = calculateUSC(salary);
+        String prsi = calculatePRSI(salary);
+        String paye = calculatePAYE(salary);
+
+        // Calculate after-tax salary
+        int afterTaxSalary = salary - Integer.parseInt(usc) - Integer.parseInt(prsi) - Integer.parseInt(paye);
+
+        // Set tax details and after-tax salary on the employee object
+        employee.setUSC(usc);
+        employee.setPRSI(prsi);
+        employee.setPAYE(paye);
+        employee.setAfterTaxSalary(afterTaxSalary);
     }
 
     // Load pay scales and rates from the CSV file
@@ -158,6 +172,7 @@ public class EmployeeSalary {
 
         return Integer.toString(paye);
     }
+
 
     // Static getter for payScaleMap
     public static Integer getPayScale(String department, String role) {
