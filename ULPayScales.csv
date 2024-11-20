@@ -1,6 +1,6 @@
-﻿CATEGORY,ROLE,SCALE POINT,RATE
-presidential,president,1,"240,716"
-presidential,vicePresident,1,"184,171"
+CATEGORY,ROLE,SCALE POINT,RATE
+presidential,president,1,"€240,716"
+presidential,vicePresident,1,"€184,171"
 academic,fullProfessor,1,"€140,068 "
 academic,fullProfessor,2,"€148,055 "
 academic,fullProfessor,3,"€156,042 "

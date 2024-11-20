@@ -346,7 +346,7 @@ public class Employee {
     public int getPayScale() {
         return payScale;
     }
-    
+
     // Setter for name
     public void setName(String name){
         this.name = name;

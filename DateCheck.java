@@ -2,13 +2,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DateCheck {
-    private static String getFormattedDate(String pattern) {
+    private boolean completedPayslips = false;
+    private boolean completedPromotion = false;
+
+    public DateCheck() {
+        runPayslips();
+        runPromotion();
+    }
+
+    private String getFormattedDate(String pattern) {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return currentDate.format(formatter);
     }
 
-    public static boolean check(String type) {
+    private boolean check(String type) {
         String month = getFormattedDate("MM");
         String day = getFormattedDate("dd");
 
@@ -18,4 +26,25 @@ public class DateCheck {
             default -> throw new IllegalArgumentException("Invalid type: " + type);
         };
     }
+
+    private void runPayslips() {
+        if ((check("payslip") == true) && (completedPayslips == false)) {
+            PayslipGenerator payslipGenerator = new PayslipGenerator();
+            payslipGenerator.writeCsv();
+            completedPayslips = true;
+        } else if (check("payslip") == false) {
+            completedPayslips = false;
+        }
+    }
+
+    private void runPromotion() {
+        if ((check("promotion") == true) && (completedPromotion == false)) {
+            PayscalePromoter payscalePromoter = new PayscalePromoter();
+            payscalePromoter.writeToCSV();
+            completedPromotion = true;
+        } else if (check("promotion") == false) {
+            completedPromotion = false;
+        }
+    }
+
 }
