@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class CLI {
 
     static Scanner scanner = new Scanner(System.in);
+    static Login login = new Login("Employees.csv");
     
 
 
@@ -90,7 +91,7 @@ public class CLI {
 
 
             // need a system to check if name and pps number match with anyone in the employees.csv
-            if (true){
+            if (login.authenticate(name, PPSno, "Employee")){
                 break;
             }else{
                 printEmployeeScreen();
@@ -136,7 +137,7 @@ public class CLI {
 
 
             // need a system to check if name and pps number match with anyone in the employees.csv
-            if (true){
+            if (login.authenticate(name, PPSno, "Admin")){
                 break;
             }else{
                 printAdminScreen();
@@ -182,7 +183,7 @@ public class CLI {
 
 
             // need a system to check if name and pps number match with anyone in the employees.csv
-            if (true){
+            if (login.authenticate(name, PPSno, "HR")){
                 break;
             }else{
                 printHRScreen();
