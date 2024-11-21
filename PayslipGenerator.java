@@ -1,45 +1,64 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PayslipGenerator {
-    SimpleCSVReader csvReader = new SimpleCSVReader();
 
+    // Gets all necessary information about each employee from the EmployeeSalary class
+    public List<String[]> getDetails() {
+        return new EmployeeSalary().getSalaries();
+    }
 
+    // Converts salary details into suitable payslip details
     public List<String[]> createPayslips() {
+        List<String[]> details = getDetails();
         List<String[]> payslips = new ArrayList<>();
-        List<String[]> nameNumPay = new ArrayList<>();
-        nameNumPay = csvReader.readCsvPaySlip();
-        
+        String date = String.valueOf(LocalDate.now());
 
-        for (int i = 1; i < nameNumPay.size(); i++) {
-            String[] row = nameNumPay.get(i);
-            String[] result = new String[7];
 
-            String name = row[0];
-            String PPSnum = row[1];
-            //use methods from EmployeeSalary  suggestion
-            double pay = (Double.parseDouble(row[2])) / 52;
-            double PRSI = pay * 0.04;
-            double USC = pay * 0.02;
-            double PAYE = pay * 0.2;
-            double net = pay - (PRSI + USC + PAYE);
+        for (String[] payslip : details) {
+            // divides pay details by 12 to calculate payslips pay & tax
+            payslip[5] = String.valueOf(Integer.valueOf(payslip[5]) / 12);
+            payslip[6] = String.valueOf(Integer.valueOf(payslip[6]) / 12);
+            payslip[7] = String.valueOf(Integer.valueOf(payslip[7]) / 12);
+            payslip[8] = String.valueOf(Integer.valueOf(payslip[8]) / 12);
+            payslip[9] = String.valueOf(Integer.valueOf(payslip[9]) / 12);
 
-            result[0] = name;
-            result[1] = PPSnum;
-            result[2] = String.valueOf(pay);
-            result[3] = String.valueOf(PRSI);
-            result[4] = String.valueOf(USC);
-            result[5] = String.valueOf(PAYE);
-            result[6] = String.valueOf(net);
+            // Adding all necessary values to payslip String[]
+            String[] finalPayslip = {
+                    date,
+                    payslip[0],
+                    payslip[1],
+                    payslip[2],
+                    payslip[3],
+                    payslip[4],
+                    payslip[5],
+                    payslip[6],
+                    payslip[7],
+                    payslip[8],
+                    payslip[9]};
 
-            payslips.add(result);
+            // Adding finalPayslip[] to ArrayList
+            payslips.add(finalPayslip);
         }
         return payslips;
     }
 
-    // moved csv method to CSVWriter
+    // Writes a new payslip to
+    public void writeCsv() {
+        List<String[]> data = createPayslips();
+        try (FileWriter writer = new FileWriter("Payslips.csv", true)) {
+            for (int i = 0; i < data.size(); i++) {
+                String[] row = data.get(i);
+                writer.append(String.join(",", row));
+                writer.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
