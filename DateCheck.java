@@ -29,8 +29,12 @@ public class DateCheck {
 
     private void runPayslips() {
         if ((check("payslip") == true) && (completedPayslips == false)) {
-            PayslipGenerator payslipGenerator = new PayslipGenerator();
-            payslipGenerator.writeCsv();
+            //PayslipGenerator payslipGenerator = new PayslipGenerator();
+            //payslipGenerator.writeCsv();
+            CSVWriter csvwrite = new CSVWriter();
+            csvwrite.writeCsvPaySlipGen();
+
+
             completedPayslips = true;
         } else if (check("payslip") == false) {
             completedPayslips = false;
@@ -38,9 +42,13 @@ public class DateCheck {
     }
 
     private void runPromotion() {
+
         if ((check("promotion") == true) && (completedPromotion == false)) {
-            PayscalePromoter payscalePromoter = new PayscalePromoter();
-            payscalePromoter.writeToCSV();
+            //PayscalePromoter payscalePromoter = new PayscalePromoter();
+            //payscalePromoter.writeToCSVPayScale();
+            CSVWriter csvWrite = new CSVWriter();
+            csvWrite.writeToCSVPayScale();
+
             completedPromotion = true;
         } else if (check("promotion") == false) {
             completedPromotion = false;
