@@ -14,7 +14,7 @@ public class EmployeeSalary {
     public static void main(String[] args) {
         try {
             // Load pay scales and rates from the CSV file
-            loadPayScalesAndRates("ULPayScales.csv");
+            loadPayScalesAndRates();
 
             // Process employees and retrieve their data
             List<Employee> employees = processEmployees();
@@ -89,8 +89,8 @@ public class EmployeeSalary {
     }
 
     // Load pay scales and rates from the CSV file
-    private static void loadPayScalesAndRates(String fileName) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
+    private static void loadPayScalesAndRates() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("ULPayScales.csv"));
         String line;
 
         // Skip the header line
