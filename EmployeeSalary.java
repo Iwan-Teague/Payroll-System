@@ -17,7 +17,7 @@ public class EmployeeSalary {
             loadPayScalesAndRates("ULPayScales.csv");
 
             // Process employees and retrieve their data
-            List<Employee> employees = processEmployees("Employees.csv");
+            List<Employee> employees = processEmployees();
 
             // Print employee details
             for (Employee employee : employees) {
@@ -36,10 +36,11 @@ public class EmployeeSalary {
     }
 
     // function to process employees
-    public static List<Employee> processEmployees(String employeeCsvPath) throws IOException {
+    public static List<Employee> processEmployees() throws IOException {
         // Read employee data from CSV
         csvReader reader = new csvReader();
-        List<Employee> employees = reader.readCSV(employeeCsvPath);
+
+        List<Employee> employees = reader.readCSV("Employees.csv");
 
         // Process each employee
         for (Employee employee : employees) {
