@@ -86,20 +86,22 @@ public class CLI {
         String name = scanner.nextLine();
         System.out.print("PPS number: ");
         String PPSno = scanner.nextLine();
+        Employee employee = login.authenticateEmployee(name, PPSno);
 
         while (true){
 
-
-            // need a system to check if name and pps number match with anyone in the employees.csv
-            if (login.authenticate(name, PPSno, "Employee")){
-                break;
-            }else{
+            
+           
+            if (employee == (null)){
                 printEmployeeScreen();
                 System.out.println("Incorrect name or PPS number");
                 System.out.print("Login\nName: ");
                 name = scanner.nextLine();
                 System.out.print("PPS number: ");
                 PPSno = scanner.nextLine();
+                employee = login.authenticateEmployee(name, PPSno);
+            }else{
+                break;
             }
         }
 
@@ -123,6 +125,8 @@ public class CLI {
                 
             }
         }
+
+        
 
     }
 

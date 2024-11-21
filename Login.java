@@ -4,9 +4,26 @@ import java.io.IOException;
 
 public class Login {
     private String csvFile;
+    private EmployeeMapper employeeMapper = new EmployeeMapper();
 
     public Login(String csvFile) {
         this.csvFile = csvFile;
+    }
+
+    public Employee authenticateEmployee(String name, String ppsNo) {
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data[0].equals(name) && data[1].equals(ppsNo)) {
+                    Employee employee = employeeMapper.fromCSV(line);
+                    return employee;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public boolean authenticate(String name, String ppsNo, String userType) {

@@ -10,8 +10,8 @@ public class EmployeeMapper {
         String csvSplitBy = ",";
         String[] data = csvLine.split(csvSplitBy);
 
-        if (data.length < 5) {
-            throw new IllegalArgumentException("Invalid CSV format. Expected 5 fields, got " + data.length);
+        if (data.length < 6) {
+            throw new IllegalArgumentException("Invalid CSV format. Expected 6 fields, got " + data.length);
         }
 
         try {
