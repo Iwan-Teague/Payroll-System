@@ -11,6 +11,35 @@ public class EmployeeSalary {
     private static Map<String, Integer> payScaleMap = new HashMap<>();
     private static Map<String, String> rateMap = new HashMap<>();
 
+    public List<String[]> getSalaries() {
+        List<String[]> salaries = new ArrayList<>();
+        try {
+            // Load pay scales and rates from the CSV file
+            loadPayScalesAndRates();
+
+            // Process employees and retrieve their data
+            List<Employee> employees = processEmployees();
+
+            // Put each employees details into ArrayList
+            for (Employee employee : employees) {
+                String[] person = {employee.getName(),
+                employee.getPPSno(),
+                String.valueOf(employee.getJobCategory()),
+                String.valueOf(employee.getJobRole()),
+                String.valueOf(employee.getPayScale()),
+                employee.getSalary(),
+                employee.getUSC(),
+                employee.getPRSI(),
+                employee.getPAYE(),
+                String.valueOf(employee.getAfterTaxSalary())};
+                salaries.add(person);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return salaries;
+    }
+
     public static void main(String[] args) {
         try {
             // Load pay scales and rates from the CSV file
