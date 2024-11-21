@@ -105,8 +105,8 @@ public class EmployeeSalary {
                 String scalePointStr = values[2].trim();
                 String rateStr = values[3];
 
-                // Parse the scale point, defaulting to 0 if it cannot be parsed
-                int scalePoint = parseInteger(scalePointStr);
+                // Parse the scale point to make sure it's an int
+                int scalePoint = Integer.parseInt(scalePointStr);
 
                 // Clean the rate (removes non-numeric characters like "€")
                 String cleanedRate = cleanRate(rateStr);
@@ -144,15 +144,6 @@ public class EmployeeSalary {
     // Clean the rate string by removing non-numeric characters
     private static String cleanRate(String rate) {
         return rate.replace("€", "").replace(",", "").trim();
-    }
-
-    // Parse integer and return default value 0 if not valid
-    private static int parseInteger(String value) {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
     }
 
     // Calculate the USC tax based on salary
