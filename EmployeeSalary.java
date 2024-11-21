@@ -16,41 +16,58 @@ public class EmployeeSalary {
             // Load pay scales and rates from the CSV file
             loadPayScalesAndRates("ULPayScales.csv");
 
-            // Read employee data from CSV
-            csvReader reader = new csvReader();
-            List<Employee> employees = reader.readCSV("Employees.csv");
+            // Process employees and retrieve their data
+            List<Employee> employees = processEmployees("Employees.csv");
 
-            // Process each employee
+            // Print employee details
             for (Employee employee : employees) {
-                String department = employee.getJobCategory().toString().toLowerCase();
-                String role = employee.getJobRole().toString().toLowerCase();
-
-                // Retrieve pay scale and rate
-                Integer payScale = getPayScale(department, role);
-                String rate = getRate(department, role);
-
-                if (payScale != null && rate != null) {
-                    int salary = Integer.parseInt(rate);
-
-                    // Set tax details and after-tax salary (call the new method)
-                    setTaxDetailsAndSalary(employee, salary);
-
-                    // Print employee details
-                    System.out.println("Employee: " + employee.getName() +
-                            ", Role: " + employee.getJobRole() +
-                            ", PayScale: " + payScale +
-                            ", Rate: " + rate +
-                            ", USC: " + employee.getUSC() +
-                            ", PRSI: " + employee.getPRSI() +
-                            ", PAYE: " + employee.getPAYE() +
-                            ", After-Tax Salary: " + employee.getAfterTaxSalary());
-                } else {
-                    System.out.println("No pay scale or rate found for: " + employee.getName());
-                }
+                System.out.println("Employee: " + employee.getName() +
+                        ", Role: " + employee.getJobRole() +
+                        ", PayScale: " + employee.getPayScale() +
+                        ", Rate: " + employee.getSalary() +
+                        ", USC: " + employee.getUSC() +
+                        ", PRSI: " + employee.getPRSI() +
+                        ", PAYE: " + employee.getPAYE() +
+                        ", After-Tax Salary: " + employee.getAfterTaxSalary());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    // function to process employees
+    public static List<Employee> processEmployees(String employeeCsvPath) throws IOException {
+        // Read employee data from CSV
+        csvReader reader = new csvReader();
+        List<Employee> employees = reader.readCSV(employeeCsvPath);
+
+        // Process each employee
+        for (Employee employee : employees) {
+            String department = employee.getJobCategory().toString().toLowerCase();
+            String role = employee.getJobRole().toString().toLowerCase();
+
+            // Retrieve pay scale and rate
+            Integer payScale = getPayScale(department, role);
+            String rate = getRate(department, role);
+
+            // set salary of employee object
+            employee.setSalary(rate);
+
+            if (payScale != null && rate != null) {
+                int salary = Integer.parseInt(rate);
+
+                // Set tax details and after-tax salary
+                setTaxDetailsAndSalary(employee, salary);
+
+                // Set additional employee data
+                employee.setPayScale(payScale);
+                employee.setSalary(rate);
+            } else {
+                System.out.println("No pay scale or rate found for: " + employee.getName());
+            }
+        }
+
+        return employees;
     }
 
     // Method to set tax details and after-tax salary for an employee
@@ -172,7 +189,6 @@ public class EmployeeSalary {
 
         return Integer.toString(paye);
     }
-
 
     // Static getter for payScaleMap
     public static Integer getPayScale(String department, String role) {
