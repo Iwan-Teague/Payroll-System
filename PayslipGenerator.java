@@ -6,28 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PayslipGenerator {
-    public List<String[]> readCsv() {
-        List<String[]> rows = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("Employees.csv"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] fields = line.split(",");
+    SimpleCSVReader csvReader = new SimpleCSVReader();
 
-                if (fields.length > 5) {
-                    String[] selectedFields = {fields[0], fields[1], fields[5]};
-                    rows.add(selectedFields);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return rows;
-    }
 
     public List<String[]> createPayslips() {
         List<String[]> payslips = new ArrayList<>();
         List<String[]> nameNumPay = new ArrayList<>();
-        nameNumPay = readCsv();
+        nameNumPay = csvReader.readCsvPaySlip();
+        
 
         for (int i = 1; i < nameNumPay.size(); i++) {
             String[] row = nameNumPay.get(i);
@@ -35,6 +21,7 @@ public class PayslipGenerator {
 
             String name = row[0];
             String PPSnum = row[1];
+            //use methods from EmployeeSalary  suggestion
             double pay = (Double.parseDouble(row[2])) / 52;
             double PRSI = pay * 0.04;
             double USC = pay * 0.02;
@@ -54,18 +41,5 @@ public class PayslipGenerator {
         return payslips;
     }
 
-    public void writeCsv() {
-        List<String[]> data = createPayslips();
-        try (FileWriter writer = new FileWriter("Payslips.csv", true)) {
-            for (int i = 0; i < data.size(); i++) {
-                String[] row = data.get(i);
-                writer.append(String.join(",", row));
-                writer.append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    // moved csv method to CSVWriter
 }
-
-
