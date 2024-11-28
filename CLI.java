@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class CLI {
 
     static Scanner scanner = new Scanner(System.in);
+    static Login login = new Login("Employees.csv");
     
 
 
@@ -85,20 +86,22 @@ public class CLI {
         String name = scanner.nextLine();
         System.out.print("PPS number: ");
         String PPSno = scanner.nextLine();
+        Employee employee = login.authenticateEmployee(name, PPSno);
 
         while (true){
 
-
-            // need a system to check if name and pps number match with anyone in the employees.csv
-            if (true){
-                break;
-            }else{
+            
+           
+            if (employee == (null)){
                 printEmployeeScreen();
                 System.out.println("Incorrect name or PPS number");
                 System.out.print("Login\nName: ");
                 name = scanner.nextLine();
                 System.out.print("PPS number: ");
                 PPSno = scanner.nextLine();
+                employee = login.authenticateEmployee(name, PPSno);
+            }else{
+                break;
             }
         }
 
@@ -123,6 +126,12 @@ public class CLI {
             }
         }
 
+        if (choise.equals("D")){
+             employee.toString();
+        }
+
+        
+
     }
 
     public static void adminMenu(){
@@ -136,7 +145,7 @@ public class CLI {
 
 
             // need a system to check if name and pps number match with anyone in the employees.csv
-            if (true){
+            if (login.authenticate(name, PPSno, "Admin")){
                 break;
             }else{
                 printAdminScreen();
@@ -182,7 +191,7 @@ public class CLI {
 
 
             // need a system to check if name and pps number match with anyone in the employees.csv
-            if (true){
+            if (login.authenticate(name, PPSno, "HR")){
                 break;
             }else{
                 printHRScreen();
