@@ -27,12 +27,11 @@ public class PayscalePromoter {
 
                 String IncrementedJobTitle = "";
                 String IncrementedPayScale = "";
-                String IncrementedPay = "";
 
-                if (j + 1 < JobsList.size()) {
-                    IncrementedJobTitle = JobsList.get(j + 1)[1];
-                    IncrementedPayScale = JobsList.get(j + 1)[2];
-                    IncrementedPay = JobsList.get(j + 1)[3];
+                if (j + 1 < JobsListModified.size()) {
+                    IncrementedJobTitle = JobsListModified.get(j + 1)[1];
+                    IncrementedPayScale = JobsListModified.get(j + 1)[2];
+
                 }
                 if (
                         (EmployeeJobTitle.equals(ListJobTitle))
@@ -40,15 +39,9 @@ public class PayscalePromoter {
                                 && (EmployeeJobTitle.equals(IncrementedJobTitle))
                 ) {
                     EmployeesList.get(i)[4] = IncrementedPayScale;
-                    EmployeesList.get(i)[5] = IncrementedPay;
                 }
             }
         }
         return EmployeesList;
     }
-    // write csv method moved to CSVWriter
-    // read csv method moved to SimpleCSVReader
-
-
-
 }
