@@ -126,6 +126,10 @@ public class CLI {
             }
         }
 
+        if (choise.equals("D")){
+             employee.toString();
+        }
+
         
 
     }
