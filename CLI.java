@@ -79,6 +79,56 @@ public class CLI {
         }
         return choise;
     }
+
+    public static String FullTimeEmployeeMenu(){
+        printEmployeeScreen();
+        System.out.println("What do you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (B)ack");
+        System.out.print("Enter your selection: ");
+        String choise = scanner.nextLine();
+        choise = choise.toUpperCase();
+
+        while (true) {
+            if ((choise.equals("D")) || (choise.equals("R")) ||(choise.equals("H")) || (choise.equals("B"))){
+                break;
+            } else{
+              
+                printEmployeeScreen();
+                System.out.println("Select what you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (B)ack");
+                System.out.println("Not one of the options ");
+                System.out.print("Enter your selection: ");
+                choise = scanner.nextLine();
+                choise = choise.toUpperCase();
+                
+            }
+        }
+
+        return choise;
+    }
+
+    public static String partTimeEmployeeMenu(){
+        printEmployeeScreen();
+        System.out.println("What do you wish to view: your (D)etails, (S)ubmit pay claim, (R)ecent payslips, (H)istorical payslips, (B)ack");
+        System.out.print("Enter your selection: ");
+        String choise = scanner.nextLine();
+        choise = choise.toUpperCase();
+
+        while (true) {
+            if ((choise.equals("D")) || (choise.equals("S")) || (choise.equals("R")) ||(choise.equals("H")) || (choise.equals("B"))){
+                break;
+            } else{
+              
+                printEmployeeScreen();
+                System.out.println("Select what you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (B)ack");
+                System.out.println("Not one of the options ");
+                System.out.print("Enter your selection: ");
+                choise = scanner.nextLine();
+                choise = choise.toUpperCase();
+                
+            }
+        }
+
+        return choise;
+    }
     
     public static void employeeMenu(){
         printEmployeeScreen();
@@ -104,32 +154,34 @@ public class CLI {
                 break;
             }
         }
+        String choise ="";
 
-        printEmployeeScreen();
-        System.out.println("What do you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (B)ack");
-        System.out.print("Enter your selection: ");
-        String choise = scanner.nextLine();
-        choise = choise.toUpperCase();
+        boolean partTime = employee.getJobCategory() == Employee.JobCategory.valueOf("ulac");
 
-        while (true) {
-            if ((choise.equals("D")) || (choise.equals("R")) ||(choise.equals("H")) || (choise.equals("B"))){
-                break;
-            } else{
-              
-                printEmployeeScreen();
-                System.out.println("Select what you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (B)ack");
-                System.out.println("Not one of the options ");
-                System.out.print("Enter your selection: ");
-                choise = scanner.nextLine();
-                choise = choise.toUpperCase();
-                
+        while (true){
+            if (partTime){
+                choise = partTimeEmployeeMenu();
+            }else{
+                choise = FullTimeEmployeeMenu();
             }
-        }
 
-        if (choise.equals("D")){
-             employee.toString();
-        }
+            if (choise.equals("D")){
+                System.out.println(employee.toString());
+            }else if (choise.equals("S")){
+                System.out.print("Hours worked since previouse pay claim");
+                String hours = scanner.nextLine();
+                
+            }else if (choise.equals("R")){
+                
+            }else if (choise.equals("H")){
+                
+            }else if (choise.equals("B")){
+                break;
+            }else{
+                System.out.println("Not an option try again");
+            }
 
+        }
         
 
     }
