@@ -328,6 +328,18 @@ public class Employee {
         this.payScale = payScale;
     }
 
+    public Employee( String name, String PPSno, JobCategory jobCategory, JobType jobRole, int payScale, String userType) {
+        if (!isRoleValidForCategory(jobCategory, jobRole)) {
+            throw new IllegalArgumentException("Invalid JobRole for the given JobCategory");
+        }
+        this.PPSno = PPSno;
+        this.name = name;
+        this.jobCategory = jobCategory;
+        this.jobRole = jobRole;
+        this.payScale = payScale;
+        this.userType = userType;
+    }
+
     // Getter for name
     public String getName() {
         return name;
@@ -425,6 +437,10 @@ public class Employee {
             }
         }
         return false;
+    }
+
+    public void addEmployee(){
+        CSVWriter.writeToCSV("Employees.csv", PPSno, name, jobCategory.toString(), jobRole.toString(), Integer.toString(payScale), userType);
     }
 
     @Override

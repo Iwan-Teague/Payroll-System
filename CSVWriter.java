@@ -33,7 +33,7 @@ public class CSVWriter {
         }
     }
 
-    public void writeToCSV(String filePath, String... values) {
+    public static void writeToCSV(String filePath, String... values) {
         try (FileWriter writer = new FileWriter(filePath, true)) {
             // Convert the array of values to a CSV line
             StringBuilder csvLine = new StringBuilder();
