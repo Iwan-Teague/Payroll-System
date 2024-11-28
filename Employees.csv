@@ -1,11 +1,11 @@
 ﻿Name,PPS No.,Department,Role,PayScale,UserType
-John Doe,1234567A,administrative,administrator,3,Employee
-Jane Smith,2345678B,academic,full Professor,5,Employee
-Bob Johnson,3456789C,it,analyst Programmer 1,4,Employee
-Alice Brown,4567890D,technical,senior Technical Officer,4,Employee
-Tom White,5678901E,service Staff,grounds Supervisor,2,Employee
-Emma Davis,6789012F,teachers,university Teacher,3,Employee
-Liam Green,7890123G,library,assistant Librarian 2,2,Employee
-Olivia Black,8901234H,ulac,coop Students,4,Employee
-Noah Gray,9012345I,education,eps Category Manager,3,Admin
-Sophia Wilson,0123456J,clinical,clinical Fellow,4, HR
+John Doe,1234567A,administrative,administrator,16,"€39
+Jane Smith,2345678B,academic,fullProfessor,6,"€177
+Bob Johnson,3456789C,it,analystProgrammer1,10,"€58
+Alice Brown,4567890D,technical,seniorTechnicalOfficer,1,"Employee"
+Tom White,5678901E,service Staff,groundsSupervisor,13,"€ 42
+Emma Davis,6789012F,teachers,universityTeacher,10,"€ 63
+Liam Green,7890123G,library,assistantLibrarian2,11,"€83
+Olivia Black,8901234H,research,researchFellow,1,"Employee"
+Noah Gray,9012345I,education,epsCategoryManager,8,"€90
+Sophia Wilson,0123456J,clinical,clinicalFellow,9,"€ 73
