@@ -8,7 +8,8 @@ public class PayslipGenerator {
 
     // Gets all necessary information about each employee from the EmployeeSalary class
     public List<String[]> getDetails() {
-        return new EmployeeSalary().getSalaries();
+        List<String[]> details = new EmployeeSalary().getSalaries();
+        return details;
     }
 
     // Converts salary details into suitable payslip details
