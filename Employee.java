@@ -430,7 +430,7 @@ public class Employee {
     }
 
     // Check if the jobRole is valid for the given jobCategory
-    private boolean isRoleValidForCategory(JobCategory jobCategory, JobType jobRole) {
+    public boolean isRoleValidForCategory(JobCategory jobCategory, JobType jobRole) {
         for (JobType validJobRole : jobCategory.getJobTypes()) {
             if (validJobRole == jobRole) {
                 return true;

@@ -214,12 +214,13 @@ public class CLI {
             }
         }
 
-        printAdminScreen();
-        System.out.println("Select what you want to do: (A)dd employee, (B)ack");
-        System.out.print("Enter your selection: ");
-        String choise = scanner.nextLine();
-        choise = choise.toUpperCase();
+        
         while (true){
+            printAdminScreen();
+            System.out.println("Select what you want to do: (A)dd employee, (B)ack");
+            System.out.print("Enter your selection: ");
+            String choise = scanner.nextLine();
+            choise = choise.toUpperCase();
             while (true) {
                 if ( (choise.equals("A")) || (choise.equals("B"))){
                     break;
@@ -243,26 +244,93 @@ public class CLI {
                 String newEmployeePayScale = "";
                 String newEmployeeUserType = "";
                 Employee newEmployee= null;
+                
+
                 System.out.print("New employees name: ");
                 newEmployeeName = scanner.nextLine(); 
+
                 System.out.print("New employees PPS No: ");
                 newEmployeePPSNo = scanner.nextLine();
+                while (true) {
+                    if (!(Checker.isValidPPS(newEmployeePPSNo)) || (Checker.isStringInCSVColumn("Employees.csv", 1, newEmployeePPSNo))){
+                        System.out.println("PPS number not valid try again or already belongs to an employee");        
+                        System.out.print("New employees PPS No: ");
+                        newEmployeePPSNo = scanner.nextLine();
+                    }else{
+                        break;
+                    }
+                }
+                
+                
+
                 System.out.print("New employees Department: ");
-                newEmployeeDepatment = scanner.nextLine();
+                newEmployeeDepatment =scanner.nextLine();
+                while (true) {
+                    if (!(Checker.isStringInDepartment(newEmployeeDepatment, Employee.JobCategory.class))){
+                        System.out.println("Department not valid try again");        
+                        System.out.print("New employees Department: ");
+                        newEmployeeDepatment = scanner.nextLine();
+                    }else{
+                        break;
+                    }
+                }
+
+
                 System.out.print("New employees Role: ");
                 newEmployeeRole = scanner.nextLine();
+                while (true) {
+                    if (!(Checker.isStringInRole(newEmployeeRole, Employee.JobType.class))){
+                        System.out.println("Role not valid try again");        
+                        System.out.print("New employees Role: ");
+                        newEmployeeRole = scanner.nextLine();
+                    }else{
+                        break;
+                    }
+                }
+
                 System.out.print("New employees Pay Scale: ");
                 newEmployeePayScale = scanner.nextLine();
-                System.out.print("New employees User Type: ");
+                while (true) {
+                    if (!(Checker.canBeInteger(newEmployeePayScale)) || (Integer.valueOf(newEmployeePayScale) > Checker.findHighestScalePoint("ULPayScales.csv", newEmployeeRole))){
+                        System.out.println("Pay scale not valid");        
+                        System.out.print("New employees Pay Scale: ");
+                        newEmployeePayScale = scanner.nextLine();
+                    }else{
+                        break;
+                    }
+                }
+
+
+                System.out.print("New employees User Type, (E)mployee, (A)dmin, (H)R: ");
                 newEmployeeUserType = scanner.nextLine();
-                newEmployee = new Employee(newEmployeeName, newEmployeePPSNo, Employee.JobCategory.valueOf(newEmployeeDepatment), Employee.JobType.valueOf(newEmployeeRole), Integer.valueOf(newEmployeePayScale), newEmployeeUserType);
+                newEmployeeUserType = newEmployeeUserType.toUpperCase();
+                while (true) {
+                    if ((newEmployeeUserType.equals("E")) || (newEmployeeUserType.equals("A")) ||(newEmployeeUserType.equals("H"))){
+                        break;
+                    } else{
+                        System.out.println("Not one of the options ");
+                        System.out.print("New employees User Type, (E)mployee, (A)dmin, (H)R: ");
+                        newEmployeeUserType = scanner.nextLine();
+                        newEmployeeUserType = newEmployeeUserType.toUpperCase();
+                    }
+                }
+
+                if (newEmployeeUserType.equals("E")){
+                    newEmployeeUserType = "Employee";
+                }else if (newEmployeeUserType.equals("A")){
+                    newEmployeeUserType = "Employee";
+                }else if (newEmployeeUserType.equals("H")){
+                    newEmployeeUserType = "HR";
+                }
+
+                newEmployee = EmployeeMapper.fromCSV(newEmployeeName, newEmployeePPSNo, newEmployeeDepatment, newEmployeeRole, newEmployeePayScale, newEmployeeUserType);
                 System.out.println("New employee details " + newEmployee.toString());
                 System.out.print("do you want to add this employee (Y)es or (N)o: ");
                 choise = scanner.nextLine();
                 if (choise.equals("Y") || choise.equals("y")){
                     newEmployee.addEmployee();
                 } 
-            }else if (choise.equals("B") || choise.equals("c")){
+            }else if (choise.equals("B") || choise.equals("b")){
                 break;
             }
 
