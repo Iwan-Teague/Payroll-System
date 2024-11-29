@@ -9,13 +9,13 @@ public class PartTimeHourCalculator {
     public static void main(String[] args) {
 
         //test writePartTime with sample data. this data will be passed to functions
-        String targetPPSNo = "1234567A"; // example ppsNo
-        double hoursWorked = 20.0; //example hours
+        String targetPPSNo = "1212121K"; // example ppsNo
+        String hoursWorkedStr = "20.0"; // example hours (as String)
         String date = "2024-11-29"; // example date
 
         //create a PartTimeHourCalculator and call writePartTime with given data
         PartTimeHourCalculator calculator = new PartTimeHourCalculator();
-        calculator.writePartTime(targetPPSNo, hoursWorked, date);
+        calculator.writePartTime(targetPPSNo, hoursWorkedStr, date);
     }
 
     //calculate earned amount for part-time employees based on department, role, and hours worked
@@ -55,11 +55,20 @@ public class PartTimeHourCalculator {
         return earnedAmount;
     }
 
-    public void writePartTime(String ppsNo, double hoursWorked, String date) {
+    public void writePartTime(String ppsNo, String hoursWorkedStr, String date) {
+        // Convert hoursWorkedStr to double
+        double hoursWorked = 0.0;
+        try {
+            hoursWorked = Double.parseDouble(hoursWorkedStr);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid hours worked value.");
+            return;
+        }
+
         //create a PartTimeHourCalculator and load employees via EmployeeSalary
         PartTimeHourCalculator calculator = new PartTimeHourCalculator();
 
-        //find emplouyee pps
+        //find employee by pps
         Employee employee = calculator.findEmployeeByPPSNo(ppsNo);
         if (employee != null) {
             System.out.println("Employee Found: " + employee);
@@ -69,6 +78,12 @@ public class PartTimeHourCalculator {
             String role = employee.getJobRole().toString();
             System.out.println("Department: " + department);
             System.out.println("Role: " + role);
+
+            // Check if the department is "ulac"
+            if (!department.equalsIgnoreCase("ulac")) {
+                System.out.println("Employee is not part-time worker.");
+                return;
+            }
 
             //calculate earned
             double earned = calculateEarned(department, role, hoursWorked);
