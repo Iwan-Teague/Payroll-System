@@ -46,6 +46,7 @@ public class CSVWriter {
     }
 
     /**
+     * @author IWan teague
      * Writes part-time employee data (PPS number, hours worked, date, earned amount) to PartTime.csv.
      * Appends data to the end of the CSV file.
      *
@@ -58,9 +59,10 @@ public class CSVWriter {
         //path to the PartTime.csv file
         String filePath = "PartTime.csv";
 
-        // Use try to handle file writing
+        //use try to write to file
         try (FileWriter fileWriter = new FileWriter(filePath, true);
-             BufferedWriter writer = new BufferedWriter(fileWriter)) {
+            BufferedWriter writer = new BufferedWriter(fileWriter)) {
+
 
             //write data ppsNo, hours, date, earned
             writer.write(ppsNo + "," + hours + "," + date + "," + earned);
