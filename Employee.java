@@ -29,6 +29,7 @@ public class Employee {
             JobType newRole = JobType.values()[newOrdinal];
             employee.setJobRole(newRole);
             System.out.println("New Job Role: " + newRole);
+            employee.setPayScale(1);
         }
     }
 
