@@ -3,7 +3,7 @@ import java.util.List;
 
 public class PayscalePromoter {
 
-    public List<String[]> incrementPayScale() {
+    public static List<String[]> incrementPayScale() {
         SimpleCSVReader csvReader = new SimpleCSVReader();
         List<String[]> EmployeesList = csvReader.readCsvPayScale(5, "Employees.csv");
         List<String[]> JobsList = csvReader.readCsvPayScale(3, "ULPayScales.csv");

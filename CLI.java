@@ -175,11 +175,12 @@ public class CLI {
                 LocalDate currentDate = LocalDate.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Example format
                 String dateString = currentDate.format(formatter);
-                //PartTimeHourCalculator.calculator(employee.getPPSno(), hours, dateString);
+                PartTimeHourCalculator.writePartTime(employee.getPPSno(), hours, dateString);
             }else if (choise.equals("R")){
                 
             }else if (choise.equals("H")){
-                
+                PayslipPrinter printer = new PayslipPrinter(employee.getName(), employee.getPPSno());
+                printer.
             }else if (choise.equals("B")){
                 break;
             }else{

@@ -11,7 +11,7 @@ public class EmployeeSalary {
     private static Map<String, Integer> payScaleMap = new HashMap<>();
     private static Map<String, String> rateMap = new HashMap<>();
 
-    public List<String[]> getSalaries() {
+    public static List<String[]> getSalaries() {
         List<String[]> salaries = new ArrayList<>();
         try {
             // Load pay scales and rates from the CSV file
