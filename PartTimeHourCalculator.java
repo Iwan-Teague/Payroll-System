@@ -15,7 +15,7 @@ public class PartTimeHourCalculator {
 
         //create a PartTimeHourCalculator and call writePartTime with given data
         PartTimeHourCalculator calculator = new PartTimeHourCalculator();
-        calculator.writePartTime(targetPPSNo, hoursWorkedStr, date);
+        //calculator.writePartTime(targetPPSNo, hoursWorkedStr, date);
     }
 
     //calculate earned amount for part-time employees based on department, role, and hours worked
@@ -55,7 +55,7 @@ public class PartTimeHourCalculator {
         return earnedAmount;
     }
 
-    public void writePartTime(String ppsNo, String hoursWorkedStr, String date) {
+    public static void writePartTime(String ppsNo, String hoursWorkedStr, String date) {
         // Convert hoursWorkedStr to double
         double hoursWorked = 0.0;
         try {
