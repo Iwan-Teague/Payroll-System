@@ -10,7 +10,7 @@ public class PartTimeHourCalculator {
 
         //test writePartTime with sample data. this data will be passed to functions
         String targetPPSNo = "1212121K"; // example ppsNo
-        String hoursWorkedStr = "20.0"; // example hours (as String)
+        String hoursWorkedStr = "8.0"; // example hours (as String)
         String date = "2024-11-29"; // example date
 
         //create a PartTimeHourCalculator and call writePartTime with given data

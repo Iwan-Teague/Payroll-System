@@ -11,7 +11,7 @@ public class EmployeeSalary {
     private static Map<String, Integer> payScaleMap = new HashMap<>();
     private static Map<String, String> rateMap = new HashMap<>();
 
-    public List<String[]> getSalaries() {
+    public static List<String[]> getSalaries() {
         List<String[]> salaries = new ArrayList<>();
         try {
             // Load pay scales and rates from the CSV file
@@ -108,8 +108,6 @@ public class EmployeeSalary {
                 // Set additional employee data
                 employee.setPayScale(payScale);
                 employee.setSalary(rate);
-            } else {
-                System.out.println("No pay scale or rate found for: " + employee.getName());
             }
         }
 
@@ -134,7 +132,7 @@ public class EmployeeSalary {
     }
 
     // Load pay scales and rates from the CSV file
-    private static void loadPayScalesAndRates() throws IOException {
+    public static void loadPayScalesAndRates() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("ULPayScales.csv"));
         String line;
 
