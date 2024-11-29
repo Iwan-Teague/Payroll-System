@@ -2,6 +2,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+/**
+ * The CLI (Command Line Interface) class simulates a menu-driven user interface for interacting
+ * with different user types such as Employee, Admin, and HR. It allows users to log in and access
+ * different menus based on their role.
+ */
 public class CLI {
 
     static Scanner scanner = new Scanner(System.in);
@@ -56,10 +61,11 @@ public class CLI {
     }
 
 
-
-
-
-    // code for the selection menus
+    /**
+     * Displays the start screen and handles the user's selection to choose their role (Employee, Admin, HR, or Quit).
+     *
+     * @return The choice of user role as a String (E, A, H, or Q).
+     */
     public static String startScreen(){
         printStartScreen();
         System.out.print("Enter your selection: ");
@@ -81,6 +87,7 @@ public class CLI {
         }
         return choise;
     }
+
 
     public static String FullTimeEmployeeMenu(){
         printEmployeeScreen();
@@ -131,7 +138,10 @@ public class CLI {
 
         return choise;
     }
-    
+
+    /**
+     * Displays the Employee menu and handles login as well as menu choices such as viewing details or payslips.
+     */
     public static void employeeMenu(){
         printEmployeeScreen();
         System.out.print("Login\nName: ");
@@ -180,7 +190,6 @@ public class CLI {
                 
             }else if (choise.equals("H")){
                 PayslipPrinter printer = new PayslipPrinter(employee.getName(), employee.getPPSno());
-                printer.
             }else if (choise.equals("B")){
                 break;
             }else{
@@ -192,6 +201,9 @@ public class CLI {
 
     }
 
+    /**
+     * Displays the Admin menu and handles login as well as menu choices such as adding employees.
+     */
     public static void adminMenu(){
         printAdminScreen();
         System.out.print("Login\nName: ");
@@ -339,6 +351,9 @@ public class CLI {
 
     }
 
+    /**
+     * Displays the HR menu and handles login as well as menu choices such as promoting employees.
+     */
     public static void hrMenu(){
         printHRScreen();
         System.out.print("Login\nName: ");
@@ -384,7 +399,13 @@ public class CLI {
         }
 
     }
-    
+
+    /**
+     * Main method which initiates the start screen and calls the appropriate menu based on user selection.
+     * The program continues running until the user selects the quit option.
+     *
+     * @param args Command line arguments (not used in this case).
+     */
     public static void main(String[] args) {
 
         while (true){

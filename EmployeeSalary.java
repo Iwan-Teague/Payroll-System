@@ -6,11 +6,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class handles the salary calculations for employees, including tax calculations (USC, PRSI, PAYE),
+ * loading pay scales and rates from a CSV file, and processing employee data.
+ * <p>
+ * It reads employee details from a CSV file, matches their pay scale and salary based on their job category
+ * and role, calculates relevant taxes, and computes the after-tax salary.
+ * </p>
+ */
 public class EmployeeSalary {
 
     private static Map<String, Integer> payScaleMap = new HashMap<>();
     private static Map<String, String> rateMap = new HashMap<>();
 
+    /**
+     * Retrieves a list of employee salaries along with their tax details and after-tax salary.
+     * <p>
+     * This method loads the pay scales and rates, processes the employees, calculates taxes, and stores the results.
+     * </p>
+     *
+     * @return an {@code ArrayList<String[]>} where each {@code String[]} contains employee details, including name, PPS number, job category, role,
+     * pay scale, salary, USC, PRSI, PAYE, and after-tax salary.
+     */
     public static List<String[]> getSalaries() {
         List<String[]> salaries = new ArrayList<>();
         try {
@@ -55,7 +72,15 @@ public class EmployeeSalary {
         return salaries;
     }
 
-
+    /**
+     * The main method that serves as the entry point for the application. It loads the pay scales and rates,
+     * processes employee data, and prints out the employee details.
+     * <p>
+     * This method is intended to display employee salary details and tax calculations for each employee.
+     * </p>
+     *
+     * @param args command-line arguments (not used in this program).
+     */
     public static void main(String[] args) {
         try {
             // Load pay scales and rates from the CSV file
@@ -80,7 +105,13 @@ public class EmployeeSalary {
         }
     }
 
-    // function to process employees
+    /**
+     * Processes employee data by reading the CSV file, matching each employee's job category and role
+     * to the correct pay scale and salary rate, then calculating taxes and after-tax salary.
+     *
+     * @return a list of {@link Employee} objects containing the processed data.
+     * @throws IOException if an error occurs while reading the CSV file.
+     */
     public static List<Employee> processEmployees() throws IOException {
         // Read employee data from CSV
         csvReader reader = new csvReader();
@@ -189,7 +220,12 @@ public class EmployeeSalary {
         return rate.replace("€", "").replace(",", "").trim();
     }
 
-    // Calculate the USC tax based on salary
+    /**
+     * Calculates the USC (Universal Social Charge) tax based on the employee's salary.
+     *
+     * @param salary the employee's salary used to calculate the USC tax.
+     * @return the USC tax as a string.
+     */
     public static String calculateUSC(double salary) {
         int usc = 0;
 
@@ -206,13 +242,23 @@ public class EmployeeSalary {
         return Integer.toString(usc);
     }
 
-    // Calculate the PRSI tax based on salary
+    /**
+     * Calculates the PRSI (Pay Related Social Insurance) tax based on the employee's salary.
+     *
+     * @param salary the employee's salary used to calculate the PRSI tax.
+     * @return the PRSI tax as a string.
+     */
     public static String calculatePRSI(double salary) {
         int prsi = (int) (salary * 0.041);
         return Integer.toString(prsi);
     }
 
-    // Calculate the PAYE tax based on salary
+    /**
+     * Calculates the PAYE (Pay As You Earn) tax based on the employee's salary.
+     *
+     * @param salary the employee's salary used to calculate the PAYE tax.
+     * @return the PAYE tax as a string.
+     */
     public static String calculatePAYE(double salary) {
         int paye = 0;
 
@@ -225,13 +271,25 @@ public class EmployeeSalary {
         return Integer.toString(paye);
     }
 
-    // Static getter for payScaleMap
+    /**
+     * Retrieves the pay scale point for a given department and role.
+     *
+     * @param department the department name (e.g., "admin").
+     * @param role the role within the department (e.g., "manager").
+     * @return the pay scale point for the given department and role, or null if not found.
+     */
     public static Integer getPayScale(String department, String role) {
         String key = department + "," + role;
         return payScaleMap.get(key);
     }
 
-    // Static getter for rateMap
+    /**
+     * Retrieves the salary rate for a given department and role.
+     *
+     * @param department the department name (e.g., "admin").
+     * @param role the role within the department (e.g., "manager").
+     * @return the salary rate for the given department and role, or null if not found.
+     */
     public static String getRate(String department, String role) {
         String key = department + "," + role;
         return rateMap.get(key);

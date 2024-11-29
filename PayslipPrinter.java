@@ -4,12 +4,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class prints all the payslips for a chosen employee.
+ * @author Samuel Luke
+ */
 public class PayslipPrinter {
     private List<String[]> payslips = new ArrayList<>();
     private List<String[]> employeePayslips = new ArrayList<>();
     private String employeeName;
     private String employeeNumber;
 
+    /**
+     * This constructor prints all payslips for a chosen employee.
+     * @param employeeName The chosen employee's name.
+     * @param employeeNumber The chosen employee's PPS number.
+     */
     public PayslipPrinter(String employeeName, String employeeNumber) {
         this.employeeName = employeeName;
         this.employeeNumber = employeeNumber;
