@@ -3,7 +3,14 @@ import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * The CSVWriter class provides methods to write data to various CSV files including employees' pay scales, payslips, and part-time employee work hours.
+ */
 public class CSVWriter {
+    /**
+     * Writes the incremented pay scale data to Employees.csv.
+     * This method fetches pay scale data from the PayscalePromoter and writes it to the CSV file.
+     */
     public static void writeToCSVPayScale() {
         PayscalePromoter payScale = new PayscalePromoter();
         List<String[]> data = PayscalePromoter.incrementPayScale();
@@ -19,6 +26,10 @@ public class CSVWriter {
 
     }
 
+    /**
+     * Writes payslip generation data to Payslips.csv.
+     * This method fetches payslip data from the PayslipGenerator and appends it to the Payslips.csv file.
+     */
     public void writeCsvPaySlipGen() {
         PayslipGenerator paySlipGen = new PayslipGenerator();
 
@@ -34,7 +45,15 @@ public class CSVWriter {
         }
     }
 
-    //write part-time employee data to PartTime.csv
+    /**
+     * Writes part-time employee data (PPS number, hours worked, date, earned amount) to PartTime.csv.
+     * Appends data to the end of the CSV file.
+     *
+     * @param ppsNo The PPS number of the part-time employee.
+     * @param hours The number of hours worked by the employee.
+     * @param date The date when the hours were worked.
+     * @param earned The amount earned by the employee based on hours worked.
+     */
     public static void writeCSVPartTime(String ppsNo, double hours, String date, double earned) {
         //path to the PartTime.csv file
         String filePath = "PartTime.csv";
@@ -53,6 +72,13 @@ public class CSVWriter {
         }
     }
 
+    /**
+     * Writes a line of data to a specified CSV file.
+     * The values are passed as varargs and are written as a single line in the CSV file.
+     *
+     * @param filePath The path of the CSV file where the data should be written.
+     * @param values The values to be written to the CSV file.
+     */
     public static void writeToCSV(String filePath, String... values) {
         try (FileWriter writer = new FileWriter(filePath, true)) {
             // Convert the array of values to a CSV line

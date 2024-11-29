@@ -1,3 +1,8 @@
+/**
+ * The Employee class represents an employee with various attributes like name, job category,
+ * job role, pay scale, and salary details. It also provides functionality for promoting an employee
+ * to a higher job role within their category.
+ */
 public class Employee {
 
     private String PPSno;
@@ -12,11 +17,13 @@ public class Employee {
     private String paye;
     private int afterTaxSalary;
 
-    //method promotion(employee)  method made by SaifKh
-    //takes employee  takes his current role and changes it to role above him
-    //example: professorFormerlyAssociateProfessor become fullProffessor
-    //change scale point to 1  change salary to new role
-    //exception  if job role is at maxinimum return error message
+    /**
+     * Promotes the given employee to a higher job role within their category.
+     * If the current job role is the highest in the category, an exception is thrown.
+     *
+     * @param employee The employee to be promoted.
+     * @throws IllegalArgumentException if the job role is already at the highest in the category.
+     */
     public void promotion(Employee employee) {
         int currentOrdinal = employee.getJobRole().ordinal();
         //highest job positions ordinal values  in each category are : 0 2 8 15 19 25 34 39 49 52 55 61
@@ -29,11 +36,15 @@ public class Employee {
             JobType newRole = JobType.values()[newOrdinal];
             employee.setJobRole(newRole);
             System.out.println("New Job Role: " + newRole);
+            employee.setPayScale(1);
         }
     }
 
 
-    // Enum to store JobCategory, that stores a unique enum JobType per JobCategory enum
+    /**
+     * Enum to store job categories and their associated job types.
+     * Each category is linked to a set of job types specific to that category.
+     */
     public enum JobCategory {
         presidential {
             public JobType[] getJobTypes() {
@@ -96,11 +107,17 @@ public class Employee {
             }
         };
 
-        //use abstract to ensure every JobCategory impliments getJobTypes()
+        /**
+         * Abstract method that ensures each JobCategory implements a method to get job types.
+         *
+         * @return An array of JobType values for the specific category.
+         */
         public abstract JobType[] getJobTypes();
     }
 
-    // Enum for all JobTypes
+    /**
+     * Enum representing all job roles (JobTypes) across different categories.
+     */
     public enum JobType {
         // Presidential category
         president,
@@ -315,8 +332,16 @@ public class Employee {
         }
     }
 
-    // Constructor
-    //pull data from excel sheet and pass name, jobCategory and jobRole. jobCategory and jobRole are enums.
+    /**
+     * Constructor for creating an Employee object.
+     *
+     * @param name The name of the employee.
+     * @param PPSno The PPS number of the employee.
+     * @param jobCategory The category of the job the employee holds.
+     * @param jobRole The specific role the employee holds in the job category.
+     * @param payScale The pay scale assigned to the employee.
+     * @throws IllegalArgumentException if the jobRole is invalid for the given jobCategory.
+     */
     public Employee( String name, String PPSno, JobCategory jobCategory, JobType jobRole, int payScale) {
         if (!isRoleValidForCategory(jobCategory, jobRole)) {
             throw new IllegalArgumentException("Invalid JobRole for the given JobCategory");
@@ -327,6 +352,7 @@ public class Employee {
         this.jobRole = jobRole;
         this.payScale = payScale;
     }
+
 
     public Employee( String name, String PPSno, JobCategory jobCategory, JobType jobRole, int payScale, String userType) {
         if (!isRoleValidForCategory(jobCategory, jobRole)) {
@@ -340,27 +366,47 @@ public class Employee {
         this.userType = userType;
     }
 
-    // Getter for name
+    /**
+     * Returns the name of the employee.
+     *
+     * @return The employee's name.
+     */
     public String getName() {
         return name;
     }
 
-    // Getter for PPSno
+    /**
+     * Returns the PPS number of the employee.
+     *
+     * @return The employee's PPS number.
+     */
     public String getPPSno() {
         return PPSno;
     }
 
-    // Getter for jobCategory
+    /**
+     * Returns the job category of the employee.
+     *
+     * @return The employee's job category.
+     */
     public JobCategory getJobCategory() {
         return jobCategory;
     }
 
-    // Getter for jobRole
+    /**
+     * Returns the job role of the employee.
+     *
+     * @return The employee's job role.
+     */
     public JobType getJobRole() {
         return jobRole;
     }
 
-    // Getter for payScale
+    /**
+     * Returns the pay scale of the employee.
+     *
+     * @return The employee's pay scale.
+     */
     public int getPayScale() {
         return payScale;
     }
@@ -385,26 +431,47 @@ public class Employee {
         return afterTaxSalary;
     }
 
-    // Setter for name
+    /**
+     * Sets the name of the employee.
+     *
+     * @param name The new name of the employee.
+     */
     public void setName(String name){
         this.name = name;
     }
 
-    // Setter for PPSno
+    /**
+     * Sets the PPS number of the employee.
+     *
+     * @param PPSno The new PPS number of the employee.
+     */
     public void setPPSno(String PPSno){
         this.PPSno = PPSno;
     }
 
-    // Setter for jobCategory
+    /**
+     * Sets the job category of the employee.
+     *
+     * @param jobCategory The new job category of the employee.
+     */
     public void setJobCategory(JobCategory jobCategory){
         this.jobCategory = jobCategory;
     }
 
-    // Setter for jobRole
+    /**
+     * Sets the job role of the employee.
+     *
+     * @param jobRole The new job role of the employee.
+     */
     public void setJobRole(JobType jobRole){
         this.jobRole = jobRole;
     }
-    // Setter for payScale
+
+    /**
+     * Sets the pay scale of the employee.
+     *
+     * @param payScale The new pay scale of the employee.
+     */
     public void setPayScale(int payScale){
         this.payScale = payScale;
     }
@@ -429,7 +496,13 @@ public class Employee {
         this.afterTaxSalary = afterTaxSalary;
     }
 
-    // Check if the jobRole is valid for the given jobCategory
+    /**
+     * Checks if the job role is valid for the given job category.
+     *
+     * @param jobCategory The job category.
+     * @param jobRole The job role.
+     * @return True if the job role is valid for the category, false otherwise.
+     */
     public boolean isRoleValidForCategory(JobCategory jobCategory, JobType jobRole) {
         for (JobType validJobRole : jobCategory.getJobTypes()) {
             if (validJobRole == jobRole) {
@@ -443,6 +516,11 @@ public class Employee {
         CSVWriter.writeToCSV("Employees.csv", PPSno, name, jobCategory.toString(), jobRole.toString(), Integer.toString(payScale), userType);
     }
 
+    /**
+     * Returns a string representation of the Employee object.
+     *
+     * @return A string describing the employee's attributes.
+     */
     @Override
     public String toString() {
         return "Employee{name= '" + name +",\tPPSno= " + PPSno  + ",\tjobCategory= " + jobCategory + ",\t\tjobRole= " + jobRole + '}';

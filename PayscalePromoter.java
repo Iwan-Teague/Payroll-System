@@ -1,8 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class moves all employees up the payscale for their respective jobs.
+ * @author Samuel Luke
+ */
 public class PayscalePromoter {
 
+    /**
+     * This method creates two {@link SimpleCSVReader} objects to read each employee's details in Employees.csv
+     * and the pay scales in ULPayScales.csv.
+     * @return an {@code ArrayList<String[]>} where each {@code String[]} contain name, PPSnumber, Department, Role, PayScale and UserType.
+     * The values in each {@code String[]} are the same as each row in Employees.csv, but the PayScale vale is incremented by one if
+     * a corresponding higher payscale exists for that role in ULPayScales.csv
+     */
     public static List<String[]> incrementPayScale() {
         SimpleCSVReader csvReader = new SimpleCSVReader();
         List<String[]> EmployeesList = csvReader.readCsvPayScale(5, "Employees.csv");

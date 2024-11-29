@@ -1,10 +1,18 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This class checks the date. If it's the 25th day of the month, payslips are generated.
+ * If it's August, employees are moved up the payscale.
+ * @author Samuel Luke
+ */
 public class DateCheck {
     private boolean completedPayslips = false;
     private boolean completedPromotion = false;
 
+    /**
+     * This constructor creates an instance of the DateCheck class.
+     */
     public DateCheck() {
         runPayslips();
         runPromotion();
