@@ -7,7 +7,7 @@ import java.util.Scanner;
  * with different user types such as Employee, Admin, and HR. It allows users to log in and access
  * different menus based on their role.
  * 
- * @auther Simon Alexander
+ * @author Simon Alexander
  * 
  */
 public class CLI {
@@ -147,7 +147,7 @@ public class CLI {
     /**
      * Displays the Employee menu and handles login as well as menu choices such as viewing details or payslips.
      * 
-     * @auther Simon Alexander
+     * @author Simon Alexander
      * 
      */
     public static void employeeMenu(){
@@ -240,7 +240,7 @@ public class CLI {
     /**
      * Displays the Admin menu and handles login as well as menu choices such as adding employees.
      * 
-     * @auther Simon Alexander
+     * @author Simon Alexander
      * 
      */
     public static void adminMenu(){
@@ -492,7 +492,7 @@ public class CLI {
      * Main method which initiates the start screen and calls the appropriate menu based on user selection.
      * The program continues running until the user selects the quit option.
      * 
-     * @auther Simon Alexander
+     * @author Simon Alexander
      *
      * @param args Command line arguments (not used in this case).
      */
@@ -510,11 +510,5 @@ public class CLI {
                 break;
             }
         }
-
-
-
-
-    
-    
     }
 }
