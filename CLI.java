@@ -96,7 +96,7 @@ public class CLI {
 
     public static String FullTimeEmployeeMenu(){
         printEmployeeScreen();
-        System.out.println("What do you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (B)ack");
+        System.out.println("What do you wish to view: your (D)etails, (H)istorical payslips, (B)ack");
         System.out.print("Enter your selection: ");
         String choise = scanner.nextLine();
         choise = choise.toUpperCase();
@@ -121,7 +121,7 @@ public class CLI {
 
     public static String partTimeEmployeeMenu(){
         printEmployeeScreen();
-        System.out.println("What do you wish to view: your (D)etails, (S)ubmit pay claim, (R)ecent payslips, (H)istorical payslips, (P)romotion (B)ack");
+        System.out.println("What do you wish to view: your (D)etails, (S)ubmit pay claim, (H)istorical payslips, (P)romotion (B)ack");
         System.out.print("Enter your selection: ");
         String choise = scanner.nextLine();
         choise = choise.toUpperCase();
