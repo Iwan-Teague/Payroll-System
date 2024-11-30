@@ -21,7 +21,7 @@ public class EmployeeSalary {
     private static Map<String, String> rateMap = new HashMap<>();
 
     /**
-     * @author Iwan Teague
+     * @author Iwan Teague/Samuel Luke
      * Retrieves a list of employee salaries along with their tax details and after-tax salary.
      * <p>
      * This method loads the pay scales and rates, processes the employees, calculates taxes, and stores the results.
@@ -84,14 +84,13 @@ public class EmployeeSalary {
      *
      * @param args command-line arguments (not used in this program).
      */
+
     public static void main(String[] args) {
         try {
             //load pay scales and rates from the CSV file
             loadPayScalesAndRates();
-
             //get employee data and save to employees
             List<Employee> employees = processEmployees();
-
             //print employee details
             for (Employee employee : employees) {
                 System.out.println("Employee: " + employee.getName() +
@@ -116,7 +115,8 @@ public class EmployeeSalary {
      * @return a list of {@link Employee} objects containing the processed data.
      * @throws IOException if an error occurs while reading the CSV file.
      */
-    public static List<Employee> processEmployees() throws IOException {
+    public static List<Employee> processEmployees() throws IOException
+    {
         //read employee data from CSV
         csvReader reader = new csvReader();
 
@@ -128,7 +128,7 @@ public class EmployeeSalary {
             String role = employee.getJobRole().toString().toLowerCase();
 
             //get pay scale and rate
-            Integer payScale = getPayScale(department, role);
+            Integer payScale = employee.getPayScale();
             String rate = getRate(department, role);
 
             // set salary of employee object
@@ -145,7 +145,6 @@ public class EmployeeSalary {
                 employee.setSalary(rate);
             }
         }
-
         return employees;
     }
 
