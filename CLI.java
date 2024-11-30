@@ -6,6 +6,9 @@ import java.util.Scanner;
  * The CLI (Command Line Interface) class simulates a menu-driven user interface for interacting
  * with different user types such as Employee, Admin, and HR. It allows users to log in and access
  * different menus based on their role.
+ * 
+ * @auther Simon Alexander
+ * 
  */
 public class CLI {
 
@@ -63,6 +66,8 @@ public class CLI {
 
     /**
      * Displays the start screen and handles the user's selection to choose their role (Employee, Admin, HR, or Quit).
+     * 
+     * @auther Simon Alexander
      *
      * @return The choice of user role as a String (E, A, H, or Q).
      */
@@ -116,18 +121,18 @@ public class CLI {
 
     public static String partTimeEmployeeMenu(){
         printEmployeeScreen();
-        System.out.println("What do you wish to view: your (D)etails, (S)ubmit pay claim, (R)ecent payslips, (H)istorical payslips, (B)ack");
+        System.out.println("What do you wish to view: your (D)etails, (S)ubmit pay claim, (R)ecent payslips, (H)istorical payslips, (P)romotion (B)ack");
         System.out.print("Enter your selection: ");
         String choise = scanner.nextLine();
         choise = choise.toUpperCase();
 
         while (true) {
-            if ((choise.equals("D")) || (choise.equals("S")) || (choise.equals("R")) ||(choise.equals("H")) || (choise.equals("B"))){
+            if ((choise.equals("D")) || (choise.equals("S")) || (choise.equals("R")) ||(choise.equals("H")) || (choise.equals("P")) || (choise.equals("B"))){
                 break;
             } else{
               
                 printEmployeeScreen();
-                System.out.println("Select what you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (B)ack");
+                System.out.println("Select what you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (P)romotion (B)ack");
                 System.out.println("Not one of the options ");
                 System.out.print("Enter your selection: ");
                 choise = scanner.nextLine();
@@ -141,6 +146,9 @@ public class CLI {
 
     /**
      * Displays the Employee menu and handles login as well as menu choices such as viewing details or payslips.
+     * 
+     * @auther Simon Alexander
+     * 
      */
     public static void employeeMenu(){
         printEmployeeScreen();
@@ -190,6 +198,34 @@ public class CLI {
                 
             }else if (choise.equals("H")){
                 PayslipPrinter printer = new PayslipPrinter(employee.getName(), employee.getPPSno());
+            }else if (choise.equals("P")){
+                System.out.println(employee.toString());
+                if  (!employee.getPromotion().equals("null")){
+                    System.out.print("You have been offered a promotion to "+ employee.getPromotion() + ", do you wish to accept it; (A)ccept, (R)eject, (B)ack: ");
+                    choise = scanner.nextLine().toUpperCase();
+                    while (true){
+                        if (choise.equals("A") || choise.equals("R") || choise.equals("B")){
+                            break;
+                        }else{
+                            System.out.println("Not an option, try again");
+                            System.out.print("You have been offered a promotion to "+ employee.getPromotion() + ", do you wish to accept it; (A)ccept, (R)eject, (B)ack: ");
+                            choise = scanner.nextLine().toUpperCase();
+                        }
+                    }
+
+                    if (choise.equals("A")){
+                        employee.acceptPromotion();
+                        System.out.println("You have accepted your promotion, press enter to continue");
+                        scanner.nextLine();
+                    }else if (choise.equals("R")){
+                        employee.acceptPromotion();
+                        System.out.println("You have rejected your promotion, press enter to continue");
+                        scanner.nextLine();
+                    }else{
+                        break;
+                    }
+                
+                }
             }else if (choise.equals("B")){
                 break;
             }else{
@@ -203,6 +239,9 @@ public class CLI {
 
     /**
      * Displays the Admin menu and handles login as well as menu choices such as adding employees.
+     * 
+     * @auther Simon Alexander
+     * 
      */
     public static void adminMenu(){
         printAdminScreen();
@@ -353,6 +392,8 @@ public class CLI {
 
     /**
      * Displays the HR menu and handles login as well as menu choices such as promoting employees.
+     * 
+     * @auther Simon Alexander
      */
     public static void hrMenu(){
         printHRScreen();
@@ -377,32 +418,81 @@ public class CLI {
             }
         }
 
-        printHRScreen();
-        System.out.println("Select what you want to do: (P)romote employee, (B)ack");
-        System.out.print("Enter your selection: ");
-        String choise = scanner.nextLine();
-        choise = choise.toUpperCase();
+        while (true){
+            printHRScreen();
+            System.out.println("Select what you want to do: (P)romote employee, (B)ack");
+            System.out.print("Enter your selection: ");
+            String choise = scanner.nextLine();
+            choise = choise.toUpperCase();
 
-        while (true) {
-            if ((choise.equals("P")) || (choise.equals("B"))){
-                break;
-            } else{
-              
-                printHRScreen();
-                System.out.println("Select what you want to do: (A)dd employee, (B)ack");
-                System.out.println("Not one of the options ");
-                System.out.print("Enter your selection: ");
-                choise = scanner.nextLine();
-                choise = choise.toUpperCase();
+            while (true) {
+                if ((choise.equals("P")) || (choise.equals("B"))){
+                    break;
+                } else{
                 
+                    printHRScreen();
+                    System.out.println("Select what you want to do: (A)dd employee, (B)ack");
+                    System.out.println("Not one of the options ");
+                    System.out.print("Enter your selection: ");
+                    choise = scanner.nextLine();
+                    choise = choise.toUpperCase();
+                    
+                }
             }
-        }
 
+            if (choise.equals("P")){
+                String employeePPSno = "";
+                Employee employee= null;
+                
+
+                System.out.print("PPS Number of the Employee you want to promote: ");
+                employeePPSno = scanner.nextLine(); 
+
+                
+                while (true) {
+                    if (!(Checker.isValidPPS(employeePPSno)) || !(Checker.isStringInCSVColumn("Employees.csv", 1, employeePPSno))){
+                        System.out.println("PPS number not valid try again or no employee has that PPS number");        
+                        System.out.print("PPS Number of the Employee you want to promote: ");
+                        employeePPSno = scanner.nextLine();
+                    }else{
+                        break;
+                    }
+                }
+
+                employee = EmployeeMapper.fromPPSno(employeePPSno);
+                System.out.println(employee.toString());
+                System.out.println("What are they being promoted to: ");
+                String newRole = scanner.nextLine();
+                while (true) {
+                    if (!Checker.isStringInRole(newRole, Employee.JobType.class) || !employee.isRoleValidForCategory(employee.getJobCategory(), Employee.JobType.valueOf(newRole))){
+                        System.out.println("Job role doesn't exist or is not in that employees department");        
+                        System.out.print("What are they being promoted to: : ");
+                        newRole = scanner.nextLine();
+                    }else{
+                        break;
+                    }
+                }
+
+                System.out.println("Are you sure you want to promote this employee, (Y)es (N)o: ");
+                choise = scanner.nextLine().toUpperCase();
+                if (choise.equals("Y")){
+                    employee.promotion(newRole);
+                    System.out.println("Press enter to continue");
+                    scanner.nextLine();
+                }
+            }
+            if (choise.equals("B")){
+                break;
+            }
+
+        }
     }
 
     /**
      * Main method which initiates the start screen and calls the appropriate menu based on user selection.
      * The program continues running until the user selects the quit option.
+     * 
+     * @auther Simon Alexander
      *
      * @param args Command line arguments (not used in this case).
      */

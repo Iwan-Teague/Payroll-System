@@ -24,16 +24,8 @@ public class TesterClass {
      * @param args command-line arguments (not used in this program)
      */
     public static void main(String[] args) {
-        SimpleCSVReader reader = new SimpleCSVReader();
-        try{
-            List<Employee> employees = reader.readCSV("Employees.csv");
-
-            for (Employee employee : employees) {
-                System.out.println(employee);
-            }
-        }  catch (IOException e) {
-            System.err.println("Error reading the CSV file: " + e.getMessage());
-        }
+        //CSVWriter.updateCSVCell("Employees.csv", 0, 0, "test");
+        CSVWriter.updateCSVCell("Employees.csv", Checker.findRowByPPS("Employees.csv", "8901234H", 1) , 6, "test");
 
     }
 }

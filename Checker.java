@@ -2,10 +2,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+
+/**
+     * Collection of methods for checking if formatting
+     * @author Simon Alexander
+     */
+
 public class Checker {
     
     /**
      * Validates the format of a PPS number.
+     * 
+     * 
+     * 
      * @param ppsNumber The PPS number to check.
      * @return true if the format is correct, false otherwise.
      */
@@ -103,5 +112,60 @@ public class Checker {
         } catch (NumberFormatException e) {
             return false; // Parsing failed
         }
+    }
+
+    public static int findRowByPPS(String csvFilePath, String ppsNumber, int ppsColumnIndex) {
+        
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            int rowNumber = 0; // Row counter (0-based initially)
+
+            // Read each row in the CSV
+            while ((line = br.readLine()) != null) {
+                
+
+                // Split the row into columns
+                String[] columns = line.split(",");
+
+                // Check if the PPS Number column matches the target PPS Number
+                if (columns.length > ppsColumnIndex && columns[ppsColumnIndex].trim().equals(ppsNumber)) {
+                    return rowNumber; // Return the 1-based row number
+                }
+                rowNumber++; // Increment the row counter (1-based)
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the CSV file: " + e.getMessage());
+        }
+
+        return -1; // Return -1 if the PPS Number is not found
+    }
+
+    /**
+     * Retrieves a row from a CSV file by its index.
+     *
+     * @param csvFilePath The path to the CSV file.
+     * @param rowIndex    The 1-based index of the row to retrieve.
+     * @return A string array representing the row, or null if the index is out of bounds or an error occurs.
+     */
+    public static String getRowByIndex(String csvFilePath, int rowIndex) {
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            int currentRow = 0;
+
+            while ((line = br.readLine()) != null) {
+                
+
+                if (currentRow == rowIndex) {
+                    // Return the String
+                    return line;
+                }
+                currentRow++;
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the CSV file: " + e.getMessage());
+        }
+
+        return null; // Return null if the row index is out of bounds or an error occurs
     }
 }

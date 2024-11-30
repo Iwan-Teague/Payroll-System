@@ -6,13 +6,14 @@ public class EmployeeMapper {
      * @return An Employee object created from the CSV line.
      * @throws IllegalArgumentException If the line contains invalid data.
      */
-    public Employee fromCSV(String csvLine) {
+    public static Employee fromCSV(String csvLine) {
         String csvSplitBy = ",";
         String[] data = csvLine.split(csvSplitBy);
+        System.out.println("am i being used");
 
-        if (data.length < 6) {
+        /*if (data.length < 6) {
             throw new IllegalArgumentException("Invalid CSV format. Expected 6 fields, got " + data.length);
-        }
+        }*/
 
         try {
             // Extract data
@@ -21,13 +22,23 @@ public class EmployeeMapper {
             String departmentStr = data[2];
             String roleStr = data[3];
             int payScale = Integer.parseInt(data[4].trim()); // Convert PayScale to integer
+            String promotion = null;
+            System.out.println(data.length + "test");
+            if (data.length > 6){
+                promotion = data[6];
+            }
+            System.out.println(promotion);
 
             // Map to enums
             Employee.JobCategory jobCategory = Employee.JobCategory.valueOf(departmentStr.replace(" ", ""));
             Employee.JobType jobType = Employee.JobType.valueOf(roleStr.replace(" ", ""));
 
             // Create and return the Employee object
-            return new Employee(name, ppsNo, jobCategory, jobType, payScale);
+            if (promotion == null){
+                return new Employee(name, ppsNo, jobCategory, jobType, payScale);
+            } else {
+                return new Employee(name, ppsNo, jobCategory, jobType, payScale,data[5], promotion);
+            }
 
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Error parsing CSV line: " + csvLine + ". " + e.getMessage(), e);
@@ -36,6 +47,7 @@ public class EmployeeMapper {
 
     public static Employee fromCSV(String... data) {
        
+        System.out.println("am i beiny used");
 
         if (data.length < 6) {
             throw new IllegalArgumentException("Invalid CSV format. Expected 6 fields, got " + data.length);
@@ -60,6 +72,16 @@ public class EmployeeMapper {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Error parsing CSV line: "  + ". " + e.getMessage(), e);
         }
+    }
+
+    public static Employee fromPPSno(String PPSno){
+        System.out.println(PPSno);
+        int row = Checker.findRowByPPS("Employees.csv", PPSno, 1);
+        System.out.println(row);
+        String lineFromCSV = Checker.getRowByIndex("Employees.csv", row);
+        System.out.println(lineFromCSV);
+        return fromCSV(lineFromCSV);
+
     }
 }
 

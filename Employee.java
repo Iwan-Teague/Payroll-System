@@ -1,3 +1,11 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Iwan Teague
  * The Employee class represents an employee with various attributes like name, job category,
@@ -12,6 +20,7 @@ public class Employee {
     private JobType jobRole;
     private int payScale;
     private String userType;
+    private String promotion;
     private String salary;
     private String usc;
     private String prsi;
@@ -26,22 +35,29 @@ public class Employee {
      * @param employee The employee to be promoted.
      * @throws IllegalArgumentException if the job role is already at the highest in the category.
      */
-    public void promotion(Employee employee) {
-        int currentOrdinal = employee.getJobRole().ordinal();
-        //highest job positions ordinal values  in each category are : 0 2 8 15 19 25 34 39 49 52 55 61
-        //check if job role is the highest in the job category
-        if(currentOrdinal == 0 || currentOrdinal == 2 ||currentOrdinal == 8 ||currentOrdinal == 15 ||currentOrdinal == 19 ||currentOrdinal == 25 ||currentOrdinal == 34 ||currentOrdinal == 49 ||currentOrdinal == 52 ||currentOrdinal == 55 ||currentOrdinal == 61){
-            throw new IllegalArgumentException("current Job Role is the highest in the category ");
-        }else {
-            // well be changing job role Via changing ordinal value  in enum every constant has enum value in our case the more senior role has a lower ordinal value
-            int newOrdinal = currentOrdinal - 1;
-            JobType newRole = JobType.values()[newOrdinal];
-            employee.setJobRole(newRole);
-            System.out.println("New Job Role: " + newRole);
-            employee.setPayScale(1);
+    public void promotion(String newRole) {
+        if (payScale == Checker.findHighestScalePoint("ULPayScales.csv",jobRole.name())){
+            CSVWriter.updateCSVCell("Employees.csv", Checker.findRowByPPS("Employees.csv", PPSno, 1) , 6, newRole);
+            System.out.println("This employee has been offered a promotion");
+        } else{
+            System.out.println("This employee is not at the top of their pay scale, they can not be promoted");
         }
     }
 
+    public void acceptPromotion(){
+        int row = Checker.findRowByPPS("Employees.csv", PPSno, 1);
+        CSVWriter.updateCSVCell("Employees.csv", row , 3, promotion);
+        CSVWriter.updateCSVCell("Employees.csv", row , 4, "1");
+        CSVWriter.updateCSVCell("Employees.csv", row , 6, "null");
+    }
+
+    public void rejectPromotion(){
+        int row = Checker.findRowByPPS("Employees.csv", PPSno, 1);
+        CSVWriter.updateCSVCell("Employees.csv", row , 6, "null");
+    }
+
+
+    
 
     /**
      * @author Iwan Teague
@@ -383,6 +399,19 @@ public class Employee {
         this.userType = userType;
     }
 
+    public Employee( String name, String PPSno, JobCategory jobCategory, JobType jobRole, int payScale, String userType, String promotion) {
+        if (!isRoleValidForCategory(jobCategory, jobRole)) {
+            throw new IllegalArgumentException("Invalid JobRole for the given JobCategory");
+        }
+        this.PPSno = PPSno;
+        this.name = name;
+        this.jobCategory = jobCategory;
+        this.jobRole = jobRole;
+        this.payScale = payScale;
+        this.userType = userType;
+        this.promotion = promotion;
+    }
+
     /**
      * @author Iwan Teague
      * Returns the name of the employee.
@@ -433,12 +462,19 @@ public class Employee {
         return payScale;
     }
 
+
+    public String getPromotion(){
+        System.out.println(promotion);
+        return promotion;
+    }
+
     /**
      * @author Iwan Teague
      * Returns the salary of the employee.
      *
      * @return The employee's salary.
      */
+
     public String getSalary() {
         return salary;
     }
@@ -616,7 +652,7 @@ public class Employee {
      */
     @Override
     public String toString() {
-        return "Employee{name= '" + name +",\tPPSno= " + PPSno  + ",\tjobCategory= " + jobCategory + ",\t\tjobRole= " + jobRole + '}';
+        return "Employee{name= '" + name +",\tPPSno= " + PPSno  + ",\tjobCategory= " + jobCategory + ",\t\tjobRole= " + jobRole + promotion + '}';
     }
 
 }
