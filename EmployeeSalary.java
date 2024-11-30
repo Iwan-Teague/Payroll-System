@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * @author Iwan Teague
  * This class handles the salary calculations for employees, including tax calculations (USC, PRSI, PAYE),
  * loading pay scales and rates from a CSV file, and processing employee data.
  * <p>
@@ -20,6 +21,7 @@ public class EmployeeSalary {
     private static Map<String, String> rateMap = new HashMap<>();
 
     /**
+     * @author Iwan Teague
      * Retrieves a list of employee salaries along with their tax details and after-tax salary.
      * <p>
      * This method loads the pay scales and rates, processes the employees, calculates taxes, and stores the results.
@@ -31,13 +33,13 @@ public class EmployeeSalary {
     public static List<String[]> getSalaries() {
         List<String[]> salaries = new ArrayList<>();
         try {
-            // Load pay scales and rates from the CSV file
+            //load pay scales and rates from the CSV file
             loadPayScalesAndRates();
 
-            // Process employees and retrieve their data
+            //process employees and retrieve their data
             List<Employee> employees = processEmployees();
 
-            // Put each employee's details into the ArrayList
+            //put each employee's details into the ArrayList
             for (Employee employee : employees) {
                 String[] person = {
                         employee.getName(),
@@ -52,7 +54,7 @@ public class EmployeeSalary {
                         String.valueOf(employee.getAfterTaxSalary())
                 };
 
-                // Check if any value in person[] is null
+                //check if any value in person[] is null
                 boolean hasNullValue = false;
                 for (String field : person) {
                     if (field == null) {
@@ -61,7 +63,7 @@ public class EmployeeSalary {
                     }
                 }
 
-                // Add to salaries list only if no null values are present
+                //add to salaries list if there are no null values
                 if (!hasNullValue) {
                     salaries.add(person);
                 }
@@ -73,6 +75,7 @@ public class EmployeeSalary {
     }
 
     /**
+     * @author Iwan Teague
      * The main method that serves as the entry point for the application. It loads the pay scales and rates,
      * processes employee data, and prints out the employee details.
      * <p>
@@ -83,13 +86,13 @@ public class EmployeeSalary {
      */
     public static void main(String[] args) {
         try {
-            // Load pay scales and rates from the CSV file
+            //load pay scales and rates from the CSV file
             loadPayScalesAndRates();
 
-            // Process employees and retrieve their data
+            //get employee data and save to employees
             List<Employee> employees = processEmployees();
 
-            // Print employee details
+            //print employee details
             for (Employee employee : employees) {
                 System.out.println("Employee: " + employee.getName() +
                         ", Role: " + employee.getJobRole() +
@@ -106,6 +109,7 @@ public class EmployeeSalary {
     }
 
     /**
+     * @author Iwan Teague
      * Processes employee data by reading the CSV file, matching each employee's job category and role
      * to the correct pay scale and salary rate, then calculating taxes and after-tax salary.
      *
@@ -113,17 +117,17 @@ public class EmployeeSalary {
      * @throws IOException if an error occurs while reading the CSV file.
      */
     public static List<Employee> processEmployees() throws IOException {
-        // Read employee data from CSV
+        //read employee data from CSV
         csvReader reader = new csvReader();
 
         List<Employee> employees = reader.readCSV("Employees.csv");
 
-        // Process each employee
+        //process each employee
         for (Employee employee : employees) {
             String department = employee.getJobCategory().toString().toLowerCase();
             String role = employee.getJobRole().toString().toLowerCase();
 
-            // Retrieve pay scale and rate
+            //get pay scale and rate
             Integer payScale = getPayScale(department, role);
             String rate = getRate(department, role);
 
@@ -133,10 +137,10 @@ public class EmployeeSalary {
             if (payScale != null && rate != null) {
                 int salary = Integer.parseInt(rate);
 
-                // Set tax details and after-tax salary
+                // set tax details (PAYE, PRSI, USC) and after-tax salary
                 setTaxDetailsAndSalary(employee, salary);
 
-                // Set additional employee data
+                // set payscale and salary
                 employee.setPayScale(payScale);
                 employee.setSalary(rate);
             }
@@ -145,32 +149,44 @@ public class EmployeeSalary {
         return employees;
     }
 
-    // Method to set tax details and after-tax salary for an employee
+    /**
+     * @author Iwan Teague
+     * Sets all tax and salary details to an employee instance, including USC,
+     * PRSI, PAYE and after tax salary.
+     *
+     * @param employee the instance of the employee.
+     * @param salary the employee's salary used to calculate and set USC, PRSI, PAYE and after tax salary.
+     */
     private static void setTaxDetailsAndSalary(Employee employee, int salary) {
-        // Calculate taxes
+        //calculate taxes
         String usc = calculateUSC(salary);
         String prsi = calculatePRSI(salary);
         String paye = calculatePAYE(salary);
 
-        // Calculate after-tax salary
+        //calculate after-tax salary
         int afterTaxSalary = salary - Integer.parseInt(usc) - Integer.parseInt(prsi) - Integer.parseInt(paye);
 
-        // Set tax details and after-tax salary on the employee object
+        //set tax details and after-tax salary on the employee object
         employee.setUSC(usc);
         employee.setPRSI(prsi);
         employee.setPAYE(paye);
         employee.setAfterTaxSalary(afterTaxSalary);
     }
 
-    // Load pay scales and rates from the CSV file
+    /**
+     * @author Iwan Teague
+     * Reads data from ULPayScales.csv and stores the data in the values array.
+     * Data in trimmed and converted to lower case to ensure consistency.
+     * Stores the scale point of an employee and salary using maps.
+     */
     public static void loadPayScalesAndRates() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("ULPayScales.csv"));
         String line;
 
-        // Skip the header line
+        //skip first line
         br.readLine();
 
-        // Process each line in the CSV
+        // process each line in the CSV
         while ((line = br.readLine()) != null) {
             String[] values = parseCSVLine(line);
             if (values.length >= 4) {
@@ -179,13 +195,13 @@ public class EmployeeSalary {
                 String scalePointStr = values[2].trim();
                 String rateStr = values[3];
 
-                // Parse the scale point to make sure it's an int
+                // make sure scale point is an int
                 int scalePoint = Integer.parseInt(scalePointStr);
 
-                // Clean the rate (removes non-numeric characters like "€")
+                // remove € and ,
                 String cleanedRate = cleanRate(rateStr);
 
-                // Create a key for the department-role pair
+                //create a key for the department-role pair
                 String key = category + "," + role;
                 payScaleMap.put(key, scalePoint);
                 rateMap.put(key, cleanedRate);
@@ -195,32 +211,54 @@ public class EmployeeSalary {
         br.close();
     }
 
-    // Parse a line of CSV data into an array of strings
+    /**
+     * @author Iwan Teague
+     * Checks String to see if it contains commas or quotes and deals with them appropriatly.
+     * Saves all parsed values to the values list, which is converted to an array and returned.
+     *
+     * @return String[] an array of String characters that contain the formatted text
+     */
     private static String[] parseCSVLine(String line) {
         StringBuilder value = new StringBuilder();
+
+        //flag to see if current character is in quotes
         boolean insideQuote = false;
         List<String> values = new ArrayList<>();
 
+        //iterate over every character and make into array of characters
         for (char c : line.toCharArray()) {
+            //check for double quotes
             if (c == '"') {
+                //toggle flag
                 insideQuote = !insideQuote;
+            //if character = comma and flag = false
             } else if (c == ',' && !insideQuote) {
+                //trim character to remove space and add to values
                 values.add(value.toString().trim());
                 value.setLength(0);
             } else {
+                //if character not , or '
                 value.append(c);
             }
         }
+        //convert values to array
         values.add(value.toString().trim());
         return values.toArray(new String[0]);
     }
 
-    // Clean the rate string by removing non-numeric characters
+    /**
+     * @author Iwan Teague
+     * Takes a String and removes € and , characters.
+     *
+     * @param rate String from csv file that needs to be formatted.
+     * @return newly formatted String with € and , removed.
+     */
     private static String cleanRate(String rate) {
         return rate.replace("€", "").replace(",", "").trim();
     }
 
     /**
+     * @author Iwan Teague
      * Calculates the USC (Universal Social Charge) tax based on the employee's salary.
      *
      * @param salary the employee's salary used to calculate the USC tax.
@@ -243,6 +281,7 @@ public class EmployeeSalary {
     }
 
     /**
+     * @author Iwan Teague
      * Calculates the PRSI (Pay Related Social Insurance) tax based on the employee's salary.
      *
      * @param salary the employee's salary used to calculate the PRSI tax.
@@ -254,6 +293,7 @@ public class EmployeeSalary {
     }
 
     /**
+     * @author Iwan Teague
      * Calculates the PAYE (Pay As You Earn) tax based on the employee's salary.
      *
      * @param salary the employee's salary used to calculate the PAYE tax.
@@ -272,6 +312,7 @@ public class EmployeeSalary {
     }
 
     /**
+     * @author Iwan Teague
      * Retrieves the pay scale point for a given department and role.
      *
      * @param department the department name (e.g., "admin").
@@ -284,6 +325,7 @@ public class EmployeeSalary {
     }
 
     /**
+     * @author Iwan Teague
      * Retrieves the salary rate for a given department and role.
      *
      * @param department the department name (e.g., "admin").

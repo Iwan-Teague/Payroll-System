@@ -2,15 +2,17 @@ import java.io.*;
 import java.util.*;
 
 /**
+ * @author Iwan Teague
  * The PartTimeHourCalculator class is responsible for calculating the earned amount for part-time employees
  * based on their department, role, and hours worked. It also manages employee data and writes the results
  * to a CSV file.
  */
 public class PartTimeHourCalculator {
 
-    private List<Employee> employeeList; // Store all employees
+    private List<Employee> employeeList; //store all employees
 
     /**
+     * @author Iwan Teague
      * Main method to test the writePartTime functionality with sample data.
      *
      * @param args Command line arguments (not used).
@@ -24,10 +26,11 @@ public class PartTimeHourCalculator {
 
         //create a PartTimeHourCalculator and call writePartTime with given data
         PartTimeHourCalculator calculator = new PartTimeHourCalculator();
-        //calculator.writePartTime(targetPPSNo, hoursWorkedStr, date);
+        calculator.writePartTime(targetPPSNo, hoursWorkedStr, date);
     }
 
     /**
+     * @author Iwan Teague
      * Calculates the earned amount for a part-time employee based on their department, role, and hours worked.
      *
      * @param department The department of the employee.
@@ -56,7 +59,7 @@ public class PartTimeHourCalculator {
             return 0.0;
         }
 
-        // Try to parse the salary rate string into a double
+        // change salary rate to double for calculations.
         double salaryRate = 0.0;
         try {
             salaryRate = Double.parseDouble(salaryRateStr);
@@ -72,6 +75,7 @@ public class PartTimeHourCalculator {
     }
 
     /**
+     * @author Iwan Teague
      * Writes the part-time employee's worked hours and earnings to a CSV file.
      *
      * @param ppsNo The PPS number of the employee.
@@ -79,7 +83,7 @@ public class PartTimeHourCalculator {
      * @param date The date when the hours were worked.
      */
     public static void writePartTime(String ppsNo, String hoursWorkedStr, String date) {
-        // Convert hoursWorkedStr to double
+        // change hoursWorkedStr to double
         double hoursWorked = 0.0;
         try {
             hoursWorked = Double.parseDouble(hoursWorkedStr);
@@ -102,7 +106,7 @@ public class PartTimeHourCalculator {
             System.out.println("Department: " + department);
             System.out.println("Role: " + role);
 
-            // Check if the department is "ulac"
+            // check department = "ulac"
             if (!department.equalsIgnoreCase("ulac")) {
                 System.out.println("Employee is not part-time worker.");
                 return;
@@ -112,7 +116,7 @@ public class PartTimeHourCalculator {
             double earned = calculateEarned(department, role, hoursWorked);
             System.out.println("Total Earned for " + hoursWorked + " hours on " + date + ": " + earned);
 
-            // Call writeCSVPartTime in CSVWriter to write data to PartTime.csv
+            // call writeCSVPartTime in CSVWriter to write data to PartTime.csv
             CSVWriter.writeCSVPartTime(ppsNo, hoursWorked, date, earned);
 
         } else {
@@ -121,6 +125,7 @@ public class PartTimeHourCalculator {
     }
 
     /**
+     * @author Iwan Teague
      * Constructor to initialize the PartTimeHourCalculator and load employees from EmployeeSalary.
      */
     public PartTimeHourCalculator() {
@@ -128,10 +133,15 @@ public class PartTimeHourCalculator {
         loadEmployeesFromEmployeeSalary(); // load employees via EmployeeSalary
     }
 
-    // load employees using processEmployees from EmployeeSalary
+    /**
+     * @author Iwan Teague
+     * loads employee data from EmployeeSalary and adds it to employeeList
+     *
+     *  @throws IOException if an error occurs while retrieving employee data from EmployeeSalary
+     */
     private void loadEmployeesFromEmployeeSalary() {
         try {
-            // this method uses processEmployees() from EmployeeSalary to get employee data
+            // uses processEmployees() from EmployeeSalary to get employee data
             List<Employee> employees = EmployeeSalary.processEmployees();
             employeeList.addAll(employees); //adds all employees to the list
         } catch (IOException e) {
@@ -140,6 +150,7 @@ public class PartTimeHourCalculator {
     }
 
     /**
+     * @author Iwan Teague
      * Finds an employee by their PPS number.
      *
      * @param ppsNo The PPS number of the employee.

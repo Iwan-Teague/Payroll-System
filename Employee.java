@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author Iwan Teague
  * The Employee class represents an employee with various attributes like name, job category,
  * job role, pay scale, and salary details. It also provides functionality for promoting an employee
  * to a higher job role within their category.
@@ -27,6 +28,7 @@ public class Employee {
     private int afterTaxSalary;
 
     /**
+     *
      * Promotes the given employee to a higher job role within their category.
      * If the current job role is the highest in the category, an exception is thrown.
      *
@@ -58,6 +60,7 @@ public class Employee {
     
 
     /**
+     * @author Iwan Teague
      * Enum to store job categories and their associated job types.
      * Each category is linked to a set of job types specific to that category.
      */
@@ -124,6 +127,7 @@ public class Employee {
         };
 
         /**
+         * @author Iwan Teague
          * Abstract method that ensures each JobCategory implements a method to get job types.
          *
          * @return An array of JobType values for the specific category.
@@ -132,6 +136,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Enum representing all job roles (JobTypes) across different categories.
      */
     public enum JobType {
@@ -224,7 +229,7 @@ public class Employee {
         researchFellow,
         seniorResearchFellow;
 
-        // Methods to link correct jobRoles to correct jobCatagories
+        // methods to link correct jobRoles to correct jobCatagories
         public static JobType[] valuesPresidential() {
             return new JobType[]{ president, vicePresident };
         }
@@ -349,6 +354,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Constructor for creating an Employee object.
      *
      * @param name The name of the employee.
@@ -369,7 +375,18 @@ public class Employee {
         this.payScale = payScale;
     }
 
-
+    /**
+     * @author Iwan Teague
+     * Constructor for creating an Employee object.
+     *
+     * @param name The name of the employee.
+     * @param PPSno The PPS number of the employee.
+     * @param jobCategory The category of the job the employee holds.
+     * @param jobRole The specific role the employee holds in the job category.
+     * @param payScale The pay scale assigned to the employee.
+     * @param userType The user type of the user. Used in CLI
+     * @throws IllegalArgumentException if the jobRole is invalid for the given jobCategory.
+     */
     public Employee( String name, String PPSno, JobCategory jobCategory, JobType jobRole, int payScale, String userType) {
         if (!isRoleValidForCategory(jobCategory, jobRole)) {
             throw new IllegalArgumentException("Invalid JobRole for the given JobCategory");
@@ -396,6 +413,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Returns the name of the employee.
      *
      * @return The employee's name.
@@ -405,6 +423,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Returns the PPS number of the employee.
      *
      * @return The employee's PPS number.
@@ -414,6 +433,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Returns the job category of the employee.
      *
      * @return The employee's job category.
@@ -423,6 +443,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Returns the job role of the employee.
      *
      * @return The employee's job role.
@@ -432,6 +453,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Returns the pay scale of the employee.
      *
      * @return The employee's pay scale.
@@ -440,32 +462,65 @@ public class Employee {
         return payScale;
     }
 
+
     public String getPromotion(){
         System.out.println(promotion);
         return promotion;
     }
 
+    /**
+     * @author Iwan Teague
+     * Returns the salary of the employee.
+     *
+     * @return The employee's salary.
+     */
+
     public String getSalary() {
         return salary;
     }
 
+    /**
+     * @author Iwan Teague
+     * Returns the USC of the employee.
+     *
+     * @return The employee's USC.
+     */
     public String getUSC() {
         return usc;
     }
 
+    /**
+     * @author Iwan Teague
+     * Returns the PRSI of the employee.
+     *
+     * @return The employee's PRSI.
+     */
     public String getPRSI() {
         return prsi;
     }
 
+    /**
+     * @author Iwan Teague
+     * Returns the PAYE of the employee.
+     *
+     * @return The employee's PAYE.
+     */
     public String getPAYE() {
         return paye;
     }
 
+    /**
+     * @author Iwan Teague
+     * Returns the after tax salary of the employee.
+     *
+     * @return The employee's after tax salary.
+     */
     public int getAfterTaxSalary() {
         return afterTaxSalary;
     }
 
     /**
+     * @author Iwan Teague
      * Sets the name of the employee.
      *
      * @param name The new name of the employee.
@@ -475,6 +530,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Sets the PPS number of the employee.
      *
      * @param PPSno The new PPS number of the employee.
@@ -484,6 +540,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Sets the job category of the employee.
      *
      * @param jobCategory The new job category of the employee.
@@ -493,6 +550,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Sets the job role of the employee.
      *
      * @param jobRole The new job role of the employee.
@@ -502,6 +560,7 @@ public class Employee {
     }
 
     /**
+     * @author Iwan Teague
      * Sets the pay scale of the employee.
      *
      * @param payScale The new pay scale of the employee.
@@ -510,27 +569,58 @@ public class Employee {
         this.payScale = payScale;
     }
 
+    /**
+     * @author Iwan Teague
+     * Sets the salary of the employee.
+     *
+     * @param salary The new salary of the employee.
+     */
     public void setSalary(String salary){
         this.salary = salary;
     }
 
+    /**
+     * @author Iwan Teague
+     * Sets the USC of the employee.
+     *
+     * @param USC The USC of the employee based on salary.
+     */
     public void setUSC(String USC){
         this.usc = USC;
     }
 
+    /**
+     * @author Iwan Teague
+     * Sets the PRSI of the employee.
+     *
+     * @param PRSI The PRSI of the employee based on salary.
+     */
     public void setPRSI(String PRSI){
         this.prsi = PRSI;
     }
 
+    /**
+     * @author Iwan Teague
+     * Sets the PAYE of the employee.
+     *
+     * @param PAYE The PAYE of the employee based on salary.
+     */
     public void setPAYE(String PAYE){
         this.paye = PAYE;
     }
 
+    /**
+     * @author Iwan Teague
+     * Sets the after tax salary of the employee.
+     *
+     * @param afterTaxSalary The after tax salary of the employee based on salary.
+     */
     public void setAfterTaxSalary(int afterTaxSalary){
         this.afterTaxSalary = afterTaxSalary;
     }
 
     /**
+     * @author Iwan Teague
      * Checks if the job role is valid for the given job category.
      *
      * @param jobCategory The job category.
@@ -546,11 +636,16 @@ public class Employee {
         return false;
     }
 
+    /**
+     * @author Iwan Teague
+     * adds an employees PPSno, name, job category, job role, pay scale and user type to the Employees.csv
+     */
     public void addEmployee(){
         CSVWriter.writeToCSV("Employees.csv", PPSno, name, jobCategory.toString(), jobRole.toString(), Integer.toString(payScale), userType);
     }
 
     /**
+     * @author Iwan Teague
      * Returns a string representation of the Employee object.
      *
      * @return A string describing the employee's attributes.
