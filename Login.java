@@ -16,7 +16,9 @@ public class Login {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(name) && data[1].equals(ppsNo)) {
-                    Employee employee = employeeMapper.fromCSV(line);
+                    System.out.println(line);
+                    Employee employee = EmployeeMapper.fromCSV(line);
+                    System.out.println(employee.toString());
                     return employee;
                 }
             }
@@ -30,7 +32,9 @@ public class Login {
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             String line;
             while ((line = br.readLine()) != null) {
+             
                 String[] data = line.split(",");
+                
                 if (data[0].equals(name) && data[1].equals(ppsNo) && data[5].equals(userType)) {
                     return true;
                 }

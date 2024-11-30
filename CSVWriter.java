@@ -1,4 +1,7 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -76,6 +79,8 @@ public class CSVWriter {
      * Writes a line of data to a specified CSV file.
      * The values are passed as varargs and are written as a single line in the CSV file.
      *
+     * @auther Simon Alexander
+     * 
      * @param filePath The path of the CSV file where the data should be written.
      * @param values The values to be written to the CSV file.
      */
@@ -97,6 +102,51 @@ public class CSVWriter {
         } catch (IOException e) {
             System.err.println("Error writing to CSV file: " + e.getMessage());
         }
+    }
+
+    /**
+     * Updates a specific cell in a CSV file.
+     *
+     * @param csvFilePath The path to the CSV file.
+     * @param rowIndex    The zero-based index of the row to update.
+     * @param columnIndex The zero-based index of the column to update.
+     * @param newValue    The new value for the cell.
+     */
+    public static void updateCSVCell(String csvFilePath, int rowIndex, int columnIndex, String newValue) {
+        List<String[]> csvData = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+
+            // Read all rows into memory
+            while ((line = br.readLine()) != null) {
+                csvData.add(line.split(","));
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the CSV file: " + e.getMessage());
+            return;
+        }
+
+        // Check if the row and column indexes are valid
+        if (rowIndex < 0 || rowIndex >= csvData.size() || columnIndex < 0 || columnIndex >= csvData.get(rowIndex).length) {
+            System.err.println("Invalid row or column index.");
+            return;
+        }
+
+        // Update the cell
+        csvData.get(rowIndex)[columnIndex] = newValue;
+
+        // Write the updated data back to the CSV file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFilePath))) {
+            for (String[] row : csvData) {
+                bw.write(String.join(",", row));
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing to the CSV file: " + e.getMessage());
+        }
+
+        System.out.println("Cell updated successfully!");
     }
 
 }
