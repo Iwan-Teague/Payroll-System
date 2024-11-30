@@ -1,7 +1,7 @@
 # Payroll System
 
 ## Overview
-The **Payroll System** has been designed categorize and manage employees at the University of Limerick. By reading data from various csv files, 
+The **Payroll System** has been designed to categorize and manage employees at the University of Limerick. By reading data from various csv files, 
 it is able to calulate salaries, taxes and generates payslips. This information can be accessed using the command line interface (CLI) where employees
 log in using their credentials. Certain employees have exclusive functionality like HR who can promote other employees and Admins who can add new 
 employees to the system
@@ -19,8 +19,6 @@ employees to the system
 ### Target Audience:
 The system has been tailor made for the employees of the University of Limerick, specifically it's staff.
 
----
-
 ## Features
 - Login system for employees, admins, and HR users.
 - Salary and tax information calculated using employee pay scales.
@@ -28,8 +26,6 @@ The system has been tailor made for the employees of the University of Limerick,
 - Administrative tools for adding users.
 - HR tools for promoting employees and managing career progression.
 - Promotion acceptance or declination for employees.
-
----
 
 ## Prerequisites
 
@@ -44,6 +40,6 @@ The Payroll System uses exclusivly **Java**. The following libraries were used:
 - `java.util.Scanner`
 - `java.util.*`
 
-Github repository:
+### Github repository:
    
 https://github.com/Iwan-Teague/Payroll-System.git
