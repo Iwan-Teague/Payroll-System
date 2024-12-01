@@ -21,9 +21,9 @@ public class Login {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(name) && data[1].equals(ppsNo)) {
-                    System.out.println(line);
+                    
                     Employee employee = EmployeeMapper.fromCSV(line);
-                    System.out.println(employee.toString());
+                
                     return employee;
                 }
             }

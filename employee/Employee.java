@@ -480,7 +480,6 @@ public class Employee {
 
 
     public String getPromotion(){
-        System.out.println(promotion);
         return promotion;
     }
 
@@ -641,7 +640,7 @@ public class Employee {
      * adds an employees PPSno, name, job category, job role, pay scale and user type to the Employees.csv
      */
     public void addEmployee(){
-        CSVWriter.writeToCSV("csv/csv files/Employees.csv", PPSno, name, jobCategory.toString(), jobRole.toString(), Integer.toString(payScale), userType);
+        CSVWriter.writeToCSV("csv/csv files/Employees.csv", name, PPSno, jobCategory.toString(), jobRole.toString(), Integer.toString(payScale), userType, promotion);
     }
 
     /**

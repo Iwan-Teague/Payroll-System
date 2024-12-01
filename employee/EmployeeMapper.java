@@ -26,11 +26,10 @@ public class EmployeeMapper {
             String roleStr = data[3];
             int payScale = Integer.parseInt(data[4].trim()); // Convert PayScale to integer
             String promotion = null;
-            System.out.println(data.length + "test");
             if (data.length > 6){
                 promotion = data[6];
             }
-            System.out.println(promotion);
+          
 
             // Map to enums
             Employee.JobCategory jobCategory = Employee.JobCategory.valueOf(departmentStr.replace(" ", ""));
@@ -64,13 +63,14 @@ public class EmployeeMapper {
             String roleStr = data[3];
             int payScale = Integer.parseInt(data[4].trim()); // Convert PayScale to integer
             String userType = data[5];
+            String promotion = data[6];
 
             // Map to enums
             Employee.JobCategory jobCategory = Employee.JobCategory.valueOf(departmentStr.replace(" ", ""));
             Employee.JobType jobType = Employee.JobType.valueOf(roleStr.replace(" ", ""));
 
             // Create and return the employee.Employee object
-            return new Employee(name, ppsNo, jobCategory, jobType, payScale, userType);
+            return new Employee(name, ppsNo, jobCategory, jobType, payScale, userType, promotion);
 
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Error parsing CSV line: "  + ". " + e.getMessage(), e);
