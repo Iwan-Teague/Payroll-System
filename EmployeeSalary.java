@@ -21,7 +21,6 @@ public class EmployeeSalary {
     private static Map<String, String> rateMap = new HashMap<>();
 
     /**
-     * @author Iwan Teague
      * Retrieves a list of employee salaries along with their tax details and after-tax salary.
      * <p>
      * This method loads the pay scales and rates, processes the employees, calculates taxes, and stores the results.
@@ -75,7 +74,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * The main method that serves as the entry point for the application. It loads the pay scales and rates,
      * processes employee data, and prints out the employee details.
      * <p>
@@ -109,7 +107,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Processes employee data by reading the CSV file, matching each employee's job category and role
      * to the correct pay scale and salary rate, then calculating taxes and after-tax salary.
      *
@@ -150,7 +147,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Sets all tax and salary details to an employee instance, including USC,
      * PRSI, PAYE and after tax salary.
      *
@@ -174,7 +170,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Reads data from ULPayScales.csv and stores the data in the values array.
      * Data in trimmed and converted to lower case to ensure consistency.
      * Stores the scale point of an employee and salary using maps.
@@ -212,7 +207,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Checks String to see if it contains commas or quotes and deals with them appropriatly.
      * Saves all parsed values to the values list, which is converted to an array and returned.
      *
@@ -247,7 +241,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Takes a String and removes € and , characters.
      *
      * @param rate String from csv file that needs to be formatted.
@@ -258,7 +251,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Calculates the USC (Universal Social Charge) tax based on the employee's salary.
      *
      * @param salary the employee's salary used to calculate the USC tax.
@@ -281,7 +273,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Calculates the PRSI (Pay Related Social Insurance) tax based on the employee's salary.
      *
      * @param salary the employee's salary used to calculate the PRSI tax.
@@ -293,7 +284,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Calculates the PAYE (Pay As You Earn) tax based on the employee's salary.
      *
      * @param salary the employee's salary used to calculate the PAYE tax.
@@ -312,7 +302,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Retrieves the pay scale point for a given department and role.
      *
      * @param department the department name (e.g., "admin").
@@ -325,7 +314,6 @@ public class EmployeeSalary {
     }
 
     /**
-     * @author Iwan Teague
      * Retrieves the salary rate for a given department and role.
      *
      * @param department the department name (e.g., "admin").

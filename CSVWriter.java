@@ -81,7 +81,7 @@ public class CSVWriter {
      * Writes a line of data to a specified CSV file.
      * The values are passed as varargs and are written as a single line in the CSV file.
      *
-     * @auther Simon Alexander
+     * 
      * 
      * @param filePath The path of the CSV file where the data should be written.
      * @param values The values to be written to the CSV file.

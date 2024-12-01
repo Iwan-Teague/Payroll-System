@@ -7,7 +7,7 @@ import java.util.Scanner;
  * with different user types such as Employee, Admin, and HR. It allows users to log in and access
  * different menus based on their role.
  * 
- * @auther Simon Alexander
+ * 
  * 
  */
 public class CLI {
@@ -66,8 +66,6 @@ public class CLI {
 
     /**
      * Displays the start screen and handles the user's selection to choose their role (Employee, Admin, HR, or Quit).
-     * 
-     * @auther Simon Alexander
      *
      * @return The choice of user role as a String (E, A, H, or Q).
      */
@@ -147,7 +145,7 @@ public class CLI {
     /**
      * Displays the Employee menu and handles login as well as menu choices such as viewing details or payslips.
      * 
-     * @auther Simon Alexander
+     * 
      * 
      */
     public static void employeeMenu(){
@@ -240,7 +238,7 @@ public class CLI {
     /**
      * Displays the Admin menu and handles login as well as menu choices such as adding employees.
      * 
-     * @auther Simon Alexander
+     * 
      * 
      */
     public static void adminMenu(){
@@ -370,7 +368,7 @@ public class CLI {
                 if (newEmployeeUserType.equals("E")){
                     newEmployeeUserType = "Employee";
                 }else if (newEmployeeUserType.equals("A")){
-                    newEmployeeUserType = "Employee";
+                    newEmployeeUserType = "Admin";
                 }else if (newEmployeeUserType.equals("H")){
                     newEmployeeUserType = "HR";
                 }
@@ -393,7 +391,7 @@ public class CLI {
     /**
      * Displays the HR menu and handles login as well as menu choices such as promoting employees.
      * 
-     * @auther Simon Alexander
+     * 
      */
     public static void hrMenu(){
         printHRScreen();
@@ -492,7 +490,7 @@ public class CLI {
      * Main method which initiates the start screen and calls the appropriate menu based on user selection.
      * The program continues running until the user selects the quit option.
      * 
-     * @auther Simon Alexander
+     * 
      *
      * @param args Command line arguments (not used in this case).
      */
