@@ -5,12 +5,14 @@ import java.util.Scanner;
 /**
  * The CLI (Command Line Interface) class simulates a menu-driven user interface for interacting
  * with different user types such as Employee, Admin, and HR. It allows users to log in and access
- * different menus based on their role
+ * different menus based on their role.
+ * 
+ * @author Simon Alexander
  * 
  */
 public class CLI {
 
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in); // scanner to read user input
     static Login login = new Login("Employees.csv");
     
 
@@ -18,6 +20,9 @@ public class CLI {
 
 
     //ascci art titles
+    /**
+     * Displays the tile art for main menu
+     */
     private static void printStartScreen(){
         System.out.println("  ____ ____  _____ _  _     _   _ _       ____                       _ _ \r\n" + //
                         " / ___|  _ \\|___ /| || |   | | | | |     |  _ \\ __ _ _   _ _ __ ___ | | |\r\n" + //
@@ -32,7 +37,9 @@ public class CLI {
         System.out.println("-------------------------------------------------------------------------------");
         System.out.println("Select user type: (E)mployee, (A)dmin, (H)R, (Q)uit");
     }
-
+    /**
+     * Displays the tile art for employee menu
+     */
     private static void printEmployeeScreen(){
         System.out.println(" _____                 _                         __  __                  \r\n" + //
                         "| ____|_ __ ___  _ __ | | ___  _   _  ___  ___  |  \\/  | ___ _ __  _   _ \r\n" + //
@@ -42,7 +49,9 @@ public class CLI {
                         "                |_|            |___/                                     ");
         System.out.println("-------------------------------------------------------------------------------");
     }
-
+    /**
+     * Displays the tile art for admin menu
+     */
     private static void printAdminScreen(){
         System.out.println("    _       _           _         __  __                  \r\n" + //
                         "   / \\   __| |_ __ ___ (_)_ __   |  \\/  | ___ _ __  _   _ \r\n" + //
@@ -51,7 +60,9 @@ public class CLI {
                         "/_/   \\_\\__,_|_| |_| |_|_|_| |_| |_|  |_|\\___|_| |_|\\__,_|");
         System.out.println("-------------------------------------------------------------------------------");
     }
-
+    /**
+     * Displays the tile art for hr menu
+     */
     private static void printHRScreen(){
         System.out.println(" _   _ ____    __  __                  \r\n" + //
                         "| | | |  _ \\  |  \\/  | ___ _ __  _   _ \r\n" + //
@@ -64,15 +75,18 @@ public class CLI {
 
     /**
      * Displays the start screen and handles the user's selection to choose their role (Employee, Admin, HR, or Quit).
+     * 
+     * @auther Simon Alexander
      *
      * @return The choice of user role as a String (E, A, H, or Q).
      */
     public static String startScreen(){
         printStartScreen();
         System.out.print("Enter your selection: ");
-        String choise = scanner.nextLine(); 
-        choise = choise.toUpperCase();
-        
+        String choise = scanner.nextLine(); // checks for user intput
+        choise = choise.toUpperCase(); // capatalise input
+
+        //for incorrect input
         while (true) {
             if ((choise.equals("E")) || (choise.equals("A")) ||(choise.equals("H"))||(choise.equals("Q"))){
                 break;
@@ -89,7 +103,11 @@ public class CLI {
         return choise;
     }
 
-
+    /**
+     * Displays the employee screen and handles the user's selection to choose their descion (Details, Historical Payslips, Back).*
+     *
+     * @return The choice of user descision as a String (D, H, B).
+     */
     public static String FullTimeEmployeeMenu(){
         printEmployeeScreen();
         System.out.println("What do you wish to view: your (D)etails, (H)istorical payslips, (B)ack");
@@ -101,7 +119,7 @@ public class CLI {
             if ((choise.equals("D")) || (choise.equals("R")) ||(choise.equals("H")) || (choise.equals("B"))){
                 break;
             } else{
-              
+              // FOR incorrect input
                 printEmployeeScreen();
                 System.out.println("Select what you wish to view: your (D)etails, (H)istorical payslips, (B)ack");
                 System.out.println("Not one of the options ");
@@ -114,7 +132,13 @@ public class CLI {
 
         return choise;
     }
-
+    /**
+     * Displays the part time employee screen and handles the user's selection to choose their Option (Details, Submit pay claim, Historichal payslip, Promotion, Back).
+     *
+     * @auther Simon Alexander
+     *
+     * @return The choice of user desicsion as a String (D, S, H, P, B).
+     */
     public static String partTimeEmployeeMenu(){
         printEmployeeScreen();
         System.out.println("What do you wish to view: your (D)etails, (S)ubmit pay claim, (H)istorical payslips, (P)romotion (B)ack");
@@ -143,6 +167,7 @@ public class CLI {
     /**
      * Displays the Employee menu and handles login as well as menu choices such as viewing details or payslips.
      * 
+     * @author Simon Alexander
      * 
      */
     public static void employeeMenu(){
@@ -156,7 +181,7 @@ public class CLI {
         while (true){
 
             
-           
+           // if employee not foound or incorrect name/pps
             if (employee == (null)){
                 printEmployeeScreen();
                 System.out.println("Incorrect name or PPS number");
@@ -164,7 +189,7 @@ public class CLI {
                 name = scanner.nextLine();
                 System.out.print("PPS number: ");
                 PPSno = scanner.nextLine();
-                employee = login.authenticateEmployee(name, PPSno);
+                employee = login.authenticateEmployee(name, PPSno); // AUTHORISE
             }else{
                 break;
             }
@@ -235,6 +260,7 @@ public class CLI {
     /**
      * Displays the Admin menu and handles login as well as menu choices such as adding employees.
      * 
+     * @author Simon Alexander
      * 
      */
     public static void adminMenu(){
@@ -364,7 +390,7 @@ public class CLI {
                 if (newEmployeeUserType.equals("E")){
                     newEmployeeUserType = "Employee";
                 }else if (newEmployeeUserType.equals("A")){
-                    newEmployeeUserType = "Admin";
+                    newEmployeeUserType = "Employee";
                 }else if (newEmployeeUserType.equals("H")){
                     newEmployeeUserType = "HR";
                 }
@@ -387,7 +413,7 @@ public class CLI {
     /**
      * Displays the HR menu and handles login as well as menu choices such as promoting employees.
      * 
-     * 
+     * @auther Simon Alexander
      */
     public static void hrMenu(){
         printHRScreen();
@@ -486,6 +512,7 @@ public class CLI {
      * Main method which initiates the start screen and calls the appropriate menu based on user selection.
      * The program continues running until the user selects the quit option.
      * 
+     * @author Simon Alexander
      *
      * @param args Command line arguments (not used in this case).
      */
