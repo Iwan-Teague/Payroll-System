@@ -423,7 +423,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Returns the PPS number of the employee.
      *
      * @return The employee's PPS number.
@@ -469,7 +468,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Returns the salary of the employee.
      *
      * @return The employee's salary.
@@ -490,7 +488,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Returns the PRSI of the employee.
      *
      * @return The employee's PRSI.
@@ -500,7 +497,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Returns the PAYE of the employee.
      *
      * @return The employee's PAYE.
@@ -510,7 +506,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Returns the after tax salary of the employee.
      *
      * @return The employee's after tax salary.
@@ -520,7 +515,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the name of the employee.
      *
      * @param name The new name of the employee.
@@ -530,7 +524,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the PPS number of the employee.
      *
      * @param PPSno The new PPS number of the employee.
@@ -540,7 +533,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the job category of the employee.
      *
      * @param jobCategory The new job category of the employee.
@@ -550,7 +542,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the job role of the employee.
      *
      * @param jobRole The new job role of the employee.
@@ -560,7 +551,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the pay scale of the employee.
      *
      * @param payScale The new pay scale of the employee.
@@ -570,7 +560,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the salary of the employee.
      *
      * @param salary The new salary of the employee.
@@ -580,7 +569,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the USC of the employee.
      *
      * @param USC The USC of the employee based on salary.
@@ -590,7 +578,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the PRSI of the employee.
      *
      * @param PRSI The PRSI of the employee based on salary.
@@ -600,7 +587,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the PAYE of the employee.
      *
      * @param PAYE The PAYE of the employee based on salary.
@@ -610,7 +596,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Sets the after tax salary of the employee.
      *
      * @param afterTaxSalary The after tax salary of the employee based on salary.
@@ -620,7 +605,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Checks if the job role is valid for the given job category.
      *
      * @param jobCategory The job category.
@@ -637,7 +621,6 @@ public class Employee {
     }
 
     /**
-     * 
      * adds an employees PPSno, name, job category, job role, pay scale and user type to the Employees.csv
      */
     public void addEmployee(){
@@ -645,7 +628,6 @@ public class Employee {
     }
 
     /**
-     * 
      * Returns a string representation of the Employee object.
      *
      * @return A string describing the employee's attributes.

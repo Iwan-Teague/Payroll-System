@@ -26,6 +26,8 @@ public class TesterClass {
     public static void main(String[] args) {
         //CSVWriter.updateCSVCell("Employees.csv", 0, 0, "test");
         CSVWriter.updateCSVCell("Employees.csv", Checker.findRowByPPS("Employees.csv", "8901234H", 1) , 6, "test");
+        DateCheckTester dateCheckTester = new DateCheckTester();
+        DateCheckTester.testDateCheck();
 
     }
 }

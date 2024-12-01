@@ -1,0 +1,214 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.9.3">
+  <diagram name="Page-1" id="c2Uu_XOuwHn7BT2IQ99c">
+    <mxGraphModel dx="567" dy="327" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-14" value="Employee" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280.00000000000045" y="40" width="240" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-15" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-14">
+          <mxGeometry y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-16" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-14">
+          <mxGeometry x="120" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-20" value="CSVWriter&lt;br&gt;JobType (enum)&lt;br&gt;JobCategory(enum)&lt;br&gt;Checker" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-16">
+          <mxGeometry x="-10.000000000000455" y="15" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-18" value="Store employee data&lt;br&gt;Manage Promotions&lt;br&gt;checks role validity" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="275" y="73" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-21" value="EmployeeSalary" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="45.000000000000455" y="240" width="259.99999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-22" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-21">
+          <mxGeometry y="20" width="139.99999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-25" value="Calculate Salaries &lt;br&gt;for employees&lt;br&gt;&amp;nbsp;and do taxes&lt;br&gt;Load Data from CSV File" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-22">
+          <mxGeometry x="-10.000000000000455" y="20" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-23" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-21">
+          <mxGeometry x="139.99999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-27" value="SimpleCSVReader&lt;br&gt;Employee" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-23">
+          <mxGeometry y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-28" value="EmployeeMapper" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380.00000000000045" y="240" width="269.99999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-29" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-28">
+          <mxGeometry y="20" width="149.99999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-30" value="Takes CSV Line and&amp;nbsp;&lt;br&gt;turns it into an Employee&lt;br&gt;object" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-29">
+          <mxGeometry x="-10.000000000000455" y="25" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-31" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-28">
+          <mxGeometry x="149.99999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-34" value="PartTimeHourCalculator" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380.00000000000045" y="420" width="269.99999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-35" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-34">
+          <mxGeometry y="20" width="149.99999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-36" value="Calculates Earnings for&amp;nbsp;&lt;br&gt;part time employees&lt;br&gt;writes data into CSV" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-35">
+          <mxGeometry x="-5.000000000000455" y="25" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-37" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-34">
+          <mxGeometry x="149.99999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-38" value="EmployeeSalary&lt;br&gt;Employee&lt;br&gt;CSVWriter" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-37">
+          <mxGeometry y="25" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-39" value="PayscalePromoter" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40.000000000000455" y="420" width="269.99999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-40" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-39">
+          <mxGeometry y="20" width="149.99999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-41" value="Reads employee details &lt;br&gt;and pay scales from a&lt;br&gt;&amp;nbsp;CSV file and promotes&lt;br&gt;&amp;nbsp;their pay scale if possible" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-40">
+          <mxGeometry x="-10.000000000000455" y="20" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-42" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-39">
+          <mxGeometry x="149.99999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-43" value="SimpleCSVReader&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-42">
+          <mxGeometry y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-44" value="PayslipGenerator" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390.00000000000045" y="580" width="269.99999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-45" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-44">
+          <mxGeometry y="20" width="149.99999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-46" value="generates pay slip for&lt;br&gt;&amp;nbsp;all Employees" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-45">
+          <mxGeometry x="-4.547473508864641e-13" y="35" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-47" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-44">
+          <mxGeometry x="149.99999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-48" value="EmployeeSalary&lt;br&gt;SimpleCSVReader" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-47">
+          <mxGeometry y="35" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-49" value="PaySlipPrinter" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30.000000000000455" y="580" width="269.99999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-50" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-49">
+          <mxGeometry y="20" width="149.99999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-51" value="Prints all payslips for an&lt;div&gt;employee&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-50">
+          <mxGeometry x="-5.000000000000455" y="35" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-52" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-49">
+          <mxGeometry x="149.99999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-53" value="login" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390.00000000000045" y="740" width="274.99999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-54" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-53">
+          <mxGeometry y="20" width="154.99999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-55" value="authenticates/checks&lt;br&gt;employee privilege for login" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-54">
+          <mxGeometry x="-7.500000000000455" y="40" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-56" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-53">
+          <mxGeometry x="154.99999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-58" value="EmployeeMapper" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-56">
+          <mxGeometry y="30" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-57" value="Checker" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="545" y="308" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-59" value="CLI" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30.000000000000455" y="740" width="299.99999999999955" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-60" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-59">
+          <mxGeometry y="20" width="154.99999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-61" value="Provide command line&lt;br&gt;interface for user and &lt;br&gt;navigation" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-60">
+          <mxGeometry x="7.499999999999545" y="20" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-62" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-59">
+          <mxGeometry x="154.99999999999955" y="20" width="145" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-63" value="Employee&lt;br&gt;PartTimeHourCalculator&lt;br&gt;PaySlipPrinter&lt;br&gt;Checker&lt;br&gt;EmployeeMapper&lt;br&gt;Login" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-62">
+          <mxGeometry x="-5" y="10" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-64" value="Checker" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390.00000000000045" y="880" width="302.49999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-65" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-64">
+          <mxGeometry y="20" width="182.49999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-66" value="collection of methods for &lt;br&gt;checking and formatting data" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-65">
+          <mxGeometry x="-4.547473508864641e-13" y="40" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-67" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-64">
+          <mxGeometry x="182.49999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-69" value="SimpleCSVReader" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40.000000000000455" y="880" width="287.49999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-70" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-69">
+          <mxGeometry y="20" width="167.49999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-71" value="collection of methods to read&lt;br&gt;CSV files&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-70">
+          <mxGeometry x="-12.500000000000455" y="40" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-72" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-69">
+          <mxGeometry x="167.49999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-73" value="Employee&lt;br&gt;EmployeeMapper" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-72">
+          <mxGeometry y="25" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-74" value="CSVWriter" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="403.75000000000045" y="1020" width="287.49999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-75" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-74">
+          <mxGeometry y="20" width="167.49999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-76" value="collection of methods to write&lt;br&gt;CSV files" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-75">
+          <mxGeometry x="-12.500000000000455" y="40" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-77" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-74">
+          <mxGeometry x="167.49999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-78" value="payscalePromoter&lt;br&gt;PayslipGenerator" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-77">
+          <mxGeometry y="25" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-79" value="DateCheck" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="52.500000000000455" y="1020" width="287.49999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-80" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-79">
+          <mxGeometry y="20" width="167.49999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-81" value="checks the date and gives&amp;nbsp;&lt;div&gt;paychecks and payscale&lt;/div&gt;&lt;div&gt;promotions based on the date&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-80">
+          <mxGeometry x="-7.500000000000455" y="25" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-82" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-79">
+          <mxGeometry x="167.49999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-83" value="CSVWriter" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-82">
+          <mxGeometry x="20" y="30" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-84" value="TesterClass" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760.0000000000005" y="730" width="274.99999999999955" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-85" value="Responsibility" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-84">
+          <mxGeometry y="20" width="154.99999999999955" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-86" value="tests code" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-85">
+          <mxGeometry x="37.499999999999545" y="45" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-87" value="collaborations" style="swimlane;startSize=20;html=1;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-84">
+          <mxGeometry x="154.99999999999955" y="20" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j-RmLvc7vcgyx26erZ2I-88" value="CSVWriter&lt;div&gt;Checker&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="j-RmLvc7vcgyx26erZ2I-87">
+          <mxGeometry x="20" y="25" width="80" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -21,14 +21,14 @@ public class SimpleCSVReader {
      * @throws IOException If an error occurs while reading the file.
      */
     public List<Employee> readCSV(String filePath) throws IOException {
-        List<Employee> employees = new ArrayList<>();
-        EmployeeMapper employeeMapper = new EmployeeMapper();
+        List<Employee> employees = new ArrayList<>(); // list of employees
+        EmployeeMapper employeeMapper = new EmployeeMapper();  // instance of employee mapper
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             br.readLine();
 
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) { // read every line until EOF
                 employees.add(employeeMapper.fromCSV(line));
             }
         }
@@ -45,15 +45,15 @@ public class SimpleCSVReader {
      * @return a {@code List<String[]>} where each {@code String[]} contains selected employee details.
      */
     public List<String[]> readCsvPaySlip() {
-        List<String[]> rows = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("Employees.csv"))) {
+        List<String[]> rows = new ArrayList<>(); // rows is list<String>
+        try (BufferedReader br = new BufferedReader(new FileReader("Employees.csv"))) { // buffer reader reads file
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) { // reads every line until EOF end of file
                 String[] fields = line.split(",");
 
                 if (fields.length > 5) {
                     String[] selectedFields = {fields[0], fields[1], fields[5]};
-                    rows.add(selectedFields);
+                    rows.add(selectedFields); // array of fields added to array list rows
                 }
             }
         } catch (IOException e) {
@@ -71,43 +71,52 @@ public class SimpleCSVReader {
      * corresponds to the name parameter.
      */
     public List<String[]> readCsvPayScale(int length, String name) {
-        List<String[]> rows = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(name))) {
+        List<String[]> rows = new ArrayList<>(); // create empty list
+        try (BufferedReader br = new BufferedReader(new FileReader(name))) { // create buffer reader to read line by line
             String line;
-            while ((line = br.readLine()) != null) {
-                String[] fields = line.split(",");
+            while ((line = br.readLine()) != null) { // loop  reads every line until EOF end of file
+                String[] fields = line.split(","); // split lines into fields
                 if (fields.length > length) {
-                    rows.add(fields);
+                    rows.add(fields); // line is added to rows list
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return rows;
+        return rows; // return list<String>
     }
+
+    /**
+     * Reads a CSV file containing
+     *
+     * @param var1 the file path for Payslips.csv
+     *
+     * @return var2 array list of employee objects
+     * corresponds to the name parameter.
+     */
     public List<Employee> readCSVSalary(String var1) throws IOException {
-        ArrayList var2 = new ArrayList();
-        EmployeeMapper var3 = new EmployeeMapper();
-        BufferedReader var4 = new BufferedReader(new FileReader(var1));
+        ArrayList var2 = new ArrayList(); // array list to store empolyee objects
+        EmployeeMapper var3 = new EmployeeMapper(); // var3 instance of EmployeeMapper
+        BufferedReader var4 = new BufferedReader(new FileReader(var1)); // var 4 to read CSV file (var1)
 
         try {
-            var4.readLine();
+            var4.readLine();//read and ingore first line of CSV
 
-            String var5;
-            while((var5 = var4.readLine()) != null) {
-                var2.add(var3.fromCSV(var5));
+            String var5;// declare var5 as string
+            while((var5 = var4.readLine()) != null) { // loop reads file line by line until EOF end of file
+                var2.add(var3.fromCSV(var5));// each line wich is (var5) with fromCSV converts to employee object wich is (var3) wich is then stored in (var2) array list
             }
-        } catch (Throwable var8) {
+        } catch (Throwable var8) { // exception
             try {
-                var4.close();
+                var4.close(); // close file
             } catch (Throwable var7) {
-                var8.addSuppressed(var7);
+                var8.addSuppressed(var7);  // suppressed exception
             }
 
-            throw var8;
+            throw var8; // exception thrown
         }
 
-        var4.close();
-        return var2;
+        var4.close(); // close file
+        return var2; // return list of employee objects
     }
 }

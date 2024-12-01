@@ -9,7 +9,6 @@ public class EmployeeMapper {
     public static Employee fromCSV(String csvLine) {
         String csvSplitBy = ",";
         String[] data = csvLine.split(csvSplitBy);
-        System.out.println("am i being used");
 
         /*if (data.length < 6) {
             throw new IllegalArgumentException("Invalid CSV format. Expected 6 fields, got " + data.length);

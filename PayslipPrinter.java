@@ -26,9 +26,10 @@ public class PayslipPrinter {
         printPayslips();
     }
 
+
     private void getEmployeePayslips() {
         for (String[] payslip : payslips) {
-            if (payslip[1].equals(employeeName) && payslip[2].equals(employeeNumber)) {
+            if (payslip.length > 1 && payslip[1].equals(employeeName) && payslip[2].equals(employeeNumber)) {
                 employeePayslips.add(payslip);
             }
         }
@@ -73,20 +74,23 @@ public class PayslipPrinter {
             String grossPay = payslip[6];
             String USC = payslip[7];
             String PRSI = payslip[8];
-            String netPay = payslip[9];
+            String PAYE = payslip[9];
+            String netPay = payslip[10];
+            String hours = "Hours: " + payslip[11];
             String totalDeductions = String.valueOf(
-                    Integer.valueOf(USC)
-                    + Integer.valueOf(PRSI)
-                    + Integer.valueOf(netPay));
+                    Double.parseDouble(USC)
+                    + Double.parseDouble(PRSI)
+                    + Double.parseDouble(PAYE));
             String border = "---------------------------------";
 
             System.out.printf("%s%s\n\n", border, border);
-            System.out.printf("%-30s %30s \n\n%-30s %30s \n\n%-30s %30s \n\n",
-                    date, name, ppsNo, jobCategory, jobRole, payScale);
+            System.out.printf("%-30s %30s \n\n%-30s %30s \n\n%-30s %30s \n\n%s \n\n",
+                    date, name, ppsNo, jobCategory, jobRole, payScale, hours);
             System.out.printf("%-30s\n",border);
             System.out.printf("|%-20s|%10s|\n", "Gross", grossPay);
             System.out.printf("|%-20s|%10s|\n", "USC", USC);
             System.out.printf("|%-20s|%10s|\n", "PRSI", PRSI);
+            System.out.printf("|%-20s|%10s|\n", "PAYE", PAYE);
             System.out.printf("|%-20s|%10s|\n", "Total Deductions", totalDeductions);
             System.out.printf("|%-20s|%10s|\n", "Net", netPay);
             System.out.printf("%-30s\n",border);

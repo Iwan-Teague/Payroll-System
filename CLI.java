@@ -5,9 +5,7 @@ import java.util.Scanner;
 /**
  * The CLI (Command Line Interface) class simulates a menu-driven user interface for interacting
  * with different user types such as Employee, Admin, and HR. It allows users to log in and access
- * different menus based on their role.
- * 
- * 
+ * different menus based on their role
  * 
  */
 public class CLI {
@@ -105,7 +103,7 @@ public class CLI {
             } else{
               
                 printEmployeeScreen();
-                System.out.println("Select what you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (B)ack");
+                System.out.println("Select what you wish to view: your (D)etails, (H)istorical payslips, (B)ack");
                 System.out.println("Not one of the options ");
                 System.out.print("Enter your selection: ");
                 choise = scanner.nextLine();
@@ -130,7 +128,7 @@ public class CLI {
             } else{
               
                 printEmployeeScreen();
-                System.out.println("Select what you wish to view: your (D)etails, (R)ecent payslips, (H)istorical payslips, (P)romotion (B)ack");
+                System.out.println("Select what you wish to view: your (D)etails, (H)istorical payslips, (P)romotion (B)ack");
                 System.out.println("Not one of the options ");
                 System.out.print("Enter your selection: ");
                 choise = scanner.nextLine();
@@ -144,7 +142,6 @@ public class CLI {
 
     /**
      * Displays the Employee menu and handles login as well as menu choices such as viewing details or payslips.
-     * 
      * 
      * 
      */
@@ -237,7 +234,6 @@ public class CLI {
 
     /**
      * Displays the Admin menu and handles login as well as menu choices such as adding employees.
-     * 
      * 
      * 
      */
@@ -490,7 +486,6 @@ public class CLI {
      * Main method which initiates the start screen and calls the appropriate menu based on user selection.
      * The program continues running until the user selects the quit option.
      * 
-     * 
      *
      * @param args Command line arguments (not used in this case).
      */
@@ -508,11 +503,5 @@ public class CLI {
                 break;
             }
         }
-
-
-
-
-    
-    
     }
 }
