@@ -2,10 +2,10 @@ import java.io.*;
 import java.util.*;
 
 /**
- * @author Iwan Teague
  * The PartTimeHourCalculator class is responsible for calculating the earned amount for part-time employees
  * based on their department, role, and hours worked. It also manages employee data and writes the results
  * to a CSV file.
+ * @author Iwan Teague
  */
 public class PartTimeHourCalculator {
 

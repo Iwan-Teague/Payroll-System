@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * The csvReader class provides functionality for reading employee data from a CSV file.
  * It reads the data line by line and maps each line into an Employee object.
+ * @author Iwan Teague
  */
 public class csvReader {
 

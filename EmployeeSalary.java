@@ -7,13 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Iwan Teague
+ *
  * This class handles the salary calculations for employees, including tax calculations (USC, PRSI, PAYE),
  * loading pay scales and rates from a CSV file, and processing employee data.
  * <p>
  * It reads employee details from a CSV file, matches their pay scale and salary based on their job category
  * and role, calculates relevant taxes, and computes the after-tax salary.
  * </p>
+ * @author Iwan Teague
  */
 public class EmployeeSalary {
 
