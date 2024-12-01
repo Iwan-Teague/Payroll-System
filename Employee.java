@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Iwan Teague
+ * 
  * The Employee class represents an employee with various attributes like name, job category,
  * job role, pay scale, and salary details. It also provides functionality for promoting an employee
  * to a higher job role within their category.
@@ -60,7 +60,7 @@ public class Employee {
     
 
     /**
-     * @author Iwan Teague
+     * 
      * Enum to store job categories and their associated job types.
      * Each category is linked to a set of job types specific to that category.
      */
@@ -136,7 +136,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     * 
      * Enum representing all job roles (JobTypes) across different categories.
      */
     public enum JobType {
@@ -354,7 +354,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     * 
      * Constructor for creating an Employee object.
      *
      * @param name The name of the employee.
@@ -376,7 +376,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     * 
      * Constructor for creating an Employee object.
      *
      * @param name The name of the employee.
@@ -413,7 +413,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     * 
      * Returns the name of the employee.
      *
      * @return The employee's name.
@@ -423,7 +423,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     *
      * Returns the PPS number of the employee.
      *
      * @return The employee's PPS number.
@@ -433,7 +433,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     * 
      * Returns the job category of the employee.
      *
      * @return The employee's job category.
@@ -443,7 +443,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     * 
      * Returns the job role of the employee.
      *
      * @return The employee's job role.
@@ -453,7 +453,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     * 
      * Returns the pay scale of the employee.
      *
      * @return The employee's pay scale.
@@ -469,7 +469,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     *
      * Returns the salary of the employee.
      *
      * @return The employee's salary.
@@ -480,7 +480,7 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
+     * 
      * Returns the USC of the employee.
      *
      * @return The employee's USC.
@@ -490,7 +490,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Returns the PRSI of the employee.
      *
      * @return The employee's PRSI.
@@ -500,7 +499,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Returns the PAYE of the employee.
      *
      * @return The employee's PAYE.
@@ -510,7 +508,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Returns the after tax salary of the employee.
      *
      * @return The employee's after tax salary.
@@ -520,7 +517,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the name of the employee.
      *
      * @param name The new name of the employee.
@@ -530,7 +526,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the PPS number of the employee.
      *
      * @param PPSno The new PPS number of the employee.
@@ -540,7 +535,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the job category of the employee.
      *
      * @param jobCategory The new job category of the employee.
@@ -550,7 +544,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the job role of the employee.
      *
      * @param jobRole The new job role of the employee.
@@ -560,7 +553,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the pay scale of the employee.
      *
      * @param payScale The new pay scale of the employee.
@@ -570,7 +562,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the salary of the employee.
      *
      * @param salary The new salary of the employee.
@@ -580,7 +571,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the USC of the employee.
      *
      * @param USC The USC of the employee based on salary.
@@ -590,7 +580,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the PRSI of the employee.
      *
      * @param PRSI The PRSI of the employee based on salary.
@@ -600,7 +589,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the PAYE of the employee.
      *
      * @param PAYE The PAYE of the employee based on salary.
@@ -610,7 +598,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Sets the after tax salary of the employee.
      *
      * @param afterTaxSalary The after tax salary of the employee based on salary.
@@ -620,7 +607,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Checks if the job role is valid for the given job category.
      *
      * @param jobCategory The job category.
@@ -637,7 +623,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * adds an employees PPSno, name, job category, job role, pay scale and user type to the Employees.csv
      */
     public void addEmployee(){
@@ -645,7 +630,6 @@ public class Employee {
     }
 
     /**
-     * @author Iwan Teague
      * Returns a string representation of the Employee object.
      *
      * @return A string describing the employee's attributes.
