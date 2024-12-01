@@ -5,7 +5,7 @@ import java.io.IOException;
 
 /**
      * Collection of methods for checking if formatting
-     * @author Simon Alexander
+     *
      */
 
 public class Checker {
