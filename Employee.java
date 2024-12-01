@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ *
  * The Employee class represents an employee with various attributes like name, job category,
  * job role, pay scale, and salary details. It also provides functionality for promoting an employee
  * to a higher job role within their category.
+ * @author Iwan Teague / Simon Alexander
  */
 public class Employee {
 
@@ -32,7 +33,7 @@ public class Employee {
      * Promotes the given employee to a higher job role within their category.
      * If the current job role is the highest in the category, an exception is thrown.
      *
-     * @param employee The employee to be promoted.
+     * @param newRole The employee to be promoted.
      * @throws IllegalArgumentException if the job role is already at the highest in the category.
      */
     public void promotion(String newRole) {
@@ -44,6 +45,11 @@ public class Employee {
         }
     }
 
+    /**
+     * Accepts promotion for an employee and updates details in "Employees.csv"
+     * It finds the row by PPS number and updates promotion status.
+     *
+     */
     public void acceptPromotion(){
         int row = Checker.findRowByPPS("Employees.csv", PPSno, 1);
         CSVWriter.updateCSVCell("Employees.csv", row , 3, promotion);
@@ -51,13 +57,15 @@ public class Employee {
         CSVWriter.updateCSVCell("Employees.csv", row , 6, "null");
     }
 
+    /**
+     * rejects promotion for an employee and updates details in "Employees.csv"
+     * It finds the row by PPS number and sets the promotion status to "null".
+     *
+     */
     public void rejectPromotion(){
         int row = Checker.findRowByPPS("Employees.csv", PPSno, 1);
         CSVWriter.updateCSVCell("Employees.csv", row , 6, "null");
     }
-
-
-    
 
     /**
      * 
@@ -70,56 +78,68 @@ public class Employee {
                 return JobType.valuesPresidential();
             }
         },
+
         academic {
             public JobType[] getJobTypes() {
                 return JobType.valuesAcademic();
             }
         },
+
         administrative {
             public JobType[] getJobTypes() {
                 return JobType.valuesAdministrative();
             }
         },
+
         education {
             public JobType[] getJobTypes() {
                 return JobType.valuesEducation();
             }
         },
+
+
         library {
             public JobType[] getJobTypes() {
                 return JobType.valuesLibrary();
             }
         },
+
         it {
             public JobType[] getJobTypes() {
                 return JobType.valuesIT();
             }
         },
+
         technical {
             public JobType[] getJobTypes() {
                 return JobType.valuesTechnical();
             }
         },
+
         serviceStaff {
             public JobType[] getJobTypes() {
                 return JobType.valuesServiceStaff();
             }
         },
+
         teachers {
             public JobType[] getJobTypes() {
                 return JobType.valuesTeachers();
             }
         },
+
         clinical {
             public JobType[] getJobTypes() {
                 return JobType.valuesClinical();
             }
         },
+
         ulac {
             public JobType[] getJobTypes() {
                 return JobType.valuesULAC();
             }
         },
+
         research {
             public JobType[] getJobTypes() {
                 return JobType.valuesResearch();
@@ -127,10 +147,10 @@ public class Employee {
         };
 
         /**
-         * 
-         * Abstract method that ensures each JobCategory implements a method to get job types.
+         * method that makes sure each JobCategory enum calls a method
+         * to get the job types associated with the category.
          *
-         * @return An array of JobType values for the specific category.
+         * @return JobType[] the array of values for the category.
          */
         public abstract JobType[] getJobTypes();
     }
