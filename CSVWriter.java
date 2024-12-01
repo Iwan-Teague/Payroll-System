@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
+ * @ Saif khawaldeh   iwan tuage simon alexander
  * The CSVWriter class provides methods to write data to various CSV files including employees' pay scales, payslips, and part-time employee work hours.
  */
 public class CSVWriter {
@@ -18,9 +19,9 @@ public class CSVWriter {
         PayscalePromoter payScale = new PayscalePromoter();
         List<String[]> data = PayscalePromoter.incrementPayScale();
         try (FileWriter writer = new FileWriter("Employees.csv")) {
-            for (int i = 0; i < data.size(); i++) {
+            for (int i = 0; i < data.size(); i++) { // loop through data
                 String[] row = data.get(i);
-                writer.append(String.join(",", row));
+                writer.append(String.join(",", row)); // array of string written as comma seperated values
                 writer.append("\n");
             }
         } catch (IOException e) {
@@ -37,10 +38,10 @@ public class CSVWriter {
         PayslipGenerator paySlipGen = new PayslipGenerator();
 
         List<String[]> data = paySlipGen.createPayslips();
-        try (FileWriter writer = new FileWriter("Payslips.csv", true)) {
-            for (int i = 0; i < data.size(); i++) {
+        try (FileWriter writer = new FileWriter("Payslips.csv", true)) { // write into CSV file
+            for (int i = 0; i < data.size(); i++) { // loop through data
                 String[] row = data.get(i);
-                writer.append(String.join(",", row));
+                writer.append(String.join(",", row)); // write from string array to comma sperated values
                 writer.append("\n");
             }
         } catch (IOException e) {
@@ -49,7 +50,7 @@ public class CSVWriter {
     }
 
     /**
-     * 
+     *
      * Writes part-time employee data (PPS number, hours worked, date, earned amount) to PartTime.csv.
      * Appends data to the end of the CSV file.
      *
@@ -80,6 +81,7 @@ public class CSVWriter {
     /**
      * Writes a line of data to a specified CSV file.
      * The values are passed as varargs and are written as a single line in the CSV file.
+     *
      *
      * 
      * @param filePath The path of the CSV file where the data should be written.
@@ -120,8 +122,8 @@ public class CSVWriter {
             String line;
 
             // Read all rows into memory
-            while ((line = br.readLine()) != null) {
-                csvData.add(line.split(","));
+            while ((line = br.readLine()) != null) { // reads All of CSV file into memory
+                csvData.add(line.split(",")); // splits line in csv by ,
             }
         } catch (IOException e) {
             System.err.println("Error reading the CSV file: " + e.getMessage());
