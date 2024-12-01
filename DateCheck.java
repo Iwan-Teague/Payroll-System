@@ -41,10 +41,10 @@ public class DateCheck {
             default -> throw new IllegalArgumentException("Invalid type: " + type);
         };
     }
+    
     /**
      * This method runs payslip generation method of wich is in CSVWriter
      */
-
     private void runPayslips() {
         if ((check("payslip") == true) && (completedPayslips == false)) {
             CSVWriter csvwrite = new CSVWriter();
@@ -56,10 +56,10 @@ public class DateCheck {
             completedPayslips = false;
         }
     }
+    
     /**
      * This method runs pay scale promotion method of wich is in CSVWriter
      */
-
     private void runPromotion() {
 
         if ((check("promotion") == true) && (completedPromotion == false)) {
