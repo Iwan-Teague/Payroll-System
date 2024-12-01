@@ -46,7 +46,7 @@ public class EmployeeMapper {
 
     public static Employee fromCSV(String... data) {
        
-        System.out.println("am i beiny used");
+        
 
         if (data.length < 6) {
             throw new IllegalArgumentException("Invalid CSV format. Expected 6 fields, got " + data.length);

@@ -9,7 +9,6 @@ import java.util.Objects;
 
 /**
  * This class allows payslips to be generated for all employees.
- * @author Samuel Luke
  */
 public class PayslipGenerator {
 

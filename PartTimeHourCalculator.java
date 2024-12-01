@@ -12,7 +12,6 @@ public class PartTimeHourCalculator {
     private List<Employee> employeeList; //store all employees
 
     /**
-     * @author Iwan Teague
      * Main method to test the writePartTime functionality with sample data.
      *
      * @param args Command line arguments (not used).
@@ -30,7 +29,6 @@ public class PartTimeHourCalculator {
     }
 
     /**
-     * @author Iwan Teague
      * Calculates the earned amount for a part-time employee based on their department, role, and hours worked.
      *
      * @param department The department of the employee.
@@ -75,7 +73,6 @@ public class PartTimeHourCalculator {
     }
 
     /**
-     * @author Iwan Teague
      * Writes the part-time employee's worked hours and earnings to a CSV file.
      *
      * @param ppsNo The PPS number of the employee.
@@ -125,7 +122,6 @@ public class PartTimeHourCalculator {
     }
 
     /**
-     * @author Iwan Teague
      * Constructor to initialize the PartTimeHourCalculator and load employees from EmployeeSalary.
      */
     public PartTimeHourCalculator() {
@@ -134,7 +130,6 @@ public class PartTimeHourCalculator {
     }
 
     /**
-     * @author Iwan Teague
      * loads employee data from EmployeeSalary and adds it to employeeList
      *
      *  @throws IOException if an error occurs while retrieving employee data from EmployeeSalary
@@ -150,7 +145,6 @@ public class PartTimeHourCalculator {
     }
 
     /**
-     * @author Iwan Teague
      * Finds an employee by their PPS number.
      *
      * @param ppsNo The PPS number of the employee.

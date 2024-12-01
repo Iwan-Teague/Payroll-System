@@ -6,7 +6,6 @@ import java.util.List;
 
 /**
  * This class prints all the payslips for a chosen employee.
- * @author Samuel Luke
  */
 public class PayslipPrinter {
     private List<String[]> payslips = new ArrayList<>();

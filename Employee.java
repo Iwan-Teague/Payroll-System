@@ -127,7 +127,7 @@ public class Employee {
         };
 
         /**
-         * @author Iwan Teague
+         * 
          * Abstract method that ensures each JobCategory implements a method to get job types.
          *
          * @return An array of JobType values for the specific category.
@@ -423,7 +423,6 @@ public class Employee {
     }
 
     /**
-     *
      * Returns the PPS number of the employee.
      *
      * @return The employee's PPS number.
@@ -469,7 +468,6 @@ public class Employee {
     }
 
     /**
-     *
      * Returns the salary of the employee.
      *
      * @return The employee's salary.
@@ -636,7 +634,7 @@ public class Employee {
      */
     @Override
     public String toString() {
-        return "Employee{name= '" + name +",\tPPSno= " + PPSno  + ",\tjobCategory= " + jobCategory + ",\t\tjobRole= " + jobRole + promotion + '}';
+        return "Employee{name= '" + name +",\tPPSno= " + PPSno  + ",\tjobCategory= " + jobCategory + ",\t\tjobRole= " + jobRole + '}';
     }
 
 }
