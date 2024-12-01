@@ -96,18 +96,18 @@ public class CLI {
 
     public static String FullTimeEmployeeMenu(){
         printEmployeeScreen();
-        System.out.println("What do you wish to view: your (D)etails, (H)istorical payslips, (B)ack");
+        System.out.println("What do you wish to view: your (D)etails, (H)istorical payslips, (P)romotion, (B)ack");
         System.out.print("Enter your selection: ");
         String choise = scanner.nextLine();
         choise = choise.toUpperCase();
 
         while (true) {
-            if ((choise.equals("D")) || (choise.equals("R")) ||(choise.equals("H")) || (choise.equals("B"))){
+            if ((choise.equals("D")) || (choise.equals("R")) ||(choise.equals("H")) || (choise.equals("P")) || (choise.equals("B"))){
                 break;
             } else{
               
                 printEmployeeScreen();
-                System.out.println("Select what you wish to view: your (D)etails, (H)istorical payslips, (B)ack");
+                System.out.println("Select what you wish to view: your (D)etails, (H)istorical payslips, (P)romotion, (B)ack");
                 System.out.println("Not one of the options ");
                 System.out.print("Enter your selection: ");
                 choise = scanner.nextLine();
@@ -121,7 +121,7 @@ public class CLI {
 
     public static String partTimeEmployeeMenu(){
         printEmployeeScreen();
-        System.out.println("What do you wish to view: your (D)etails, (S)ubmit pay claim, (H)istorical payslips, (P)romotion (B)ack");
+        System.out.println("What do you wish to view: your (D)etails, (S)ubmit pay claim, (H)istorical payslips, (P)romotion, (B)ack");
         System.out.print("Enter your selection: ");
         String choise = scanner.nextLine();
         choise = choise.toUpperCase();
@@ -132,7 +132,7 @@ public class CLI {
             } else{
               
                 printEmployeeScreen();
-                System.out.println("Select what you wish to view: your (D)etails, (H)istorical payslips, (P)romotion (B)ack");
+                System.out.println("Select what you wish to view: your (D)etails, (H)istorical payslips, (P)romotion, (B)ack");
                 System.out.println("Not one of the options ");
                 System.out.print("Enter your selection: ");
                 choise = scanner.nextLine();
@@ -151,7 +151,7 @@ public class CLI {
      */
     public static void employeeMenu(){
         printEmployeeScreen();
-        System.out.print("CLI.Login\nName: ");
+        System.out.print("Name: ");
         String name = scanner.nextLine();
         System.out.print("PPS number: ");
         String PPSno = scanner.nextLine();
@@ -164,7 +164,7 @@ public class CLI {
             if (employee == (null)){
                 printEmployeeScreen();
                 System.out.println("Incorrect name or PPS number");
-                System.out.print("CLI.Login\nName: ");
+                System.out.print("Name: ");
                 name = scanner.nextLine();
                 System.out.print("PPS number: ");
                 PPSno = scanner.nextLine();
@@ -198,7 +198,6 @@ public class CLI {
             }else if (choise.equals("H")){
                 PayslipPrinter printer = new PayslipPrinter(employee.getName(), employee.getPPSno());
             }else if (choise.equals("P")){
-                System.out.println(employee.toString());
                 if  (!employee.getPromotion().equals("null")){
                     System.out.print("You have been offered a promotion to "+ employee.getPromotion() + ", do you wish to accept it; (A)ccept, (R)eject, (B)ack: ");
                     choise = scanner.nextLine().toUpperCase();
@@ -224,6 +223,9 @@ public class CLI {
                         break;
                     }
                 
+                }else {
+                    System.out.println("You have not been offered a promotion, press enter to continue");
+                    scanner.nextLine();
                 }
             }else if (choise.equals("B")){
                 break;
@@ -373,7 +375,7 @@ public class CLI {
                     newEmployeeUserType = "HR";
                 }
 
-                newEmployee = EmployeeMapper.fromCSV(newEmployeePPSNo, newEmployeeName, newEmployeeDepatment, newEmployeeRole, newEmployeePayScale, newEmployeeUserType);
+                newEmployee = EmployeeMapper.fromCSV(newEmployeeName, newEmployeePPSNo, newEmployeeDepatment, newEmployeeRole, newEmployeePayScale, newEmployeeUserType, "null");
                 System.out.println("New employee details " + newEmployee.toString());
                 System.out.print("do you want to add this employee (Y)es or (N)o: ");
                 choise = scanner.nextLine();
