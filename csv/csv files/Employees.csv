@@ -1,0 +1,11 @@
+Name,PPS No.,Department,Role,PayScale,UserType,Promotion
+John Doe,1234567A,administrative,administrator,3,employee.Employee,null
+Jane Smith,2345678B,academic,fullProfessor,5,employee.Employee,null
+Bob Johnson,3456789C,it,analystProgrammer1,4,employee.Employee,null
+Alice Brown,4567890D,technical,seniorTechnicalOfficer,4,employee.Employee,null
+Tom White,5678901E,service Staff,groundsSupervisor,2,employee.Employee,null
+Emma Davis,6789012F,teachers,universityTeacher,3,employee.Employee,null
+Liam Green,7890123G,library,assistantLibrarian2,2,employee.Employee,null
+Olivia Black,8901234H,ulac,coopStudents,1,employee.Employee,test
+Noah Gray,9012345I,education,epsCategoryManager,1,Admin,null
+Sophia Wilson,0123456J,clinical,clinicalFellow,4,HR,null
