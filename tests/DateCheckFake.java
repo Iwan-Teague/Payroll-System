@@ -31,7 +31,7 @@ public class DateCheckFake {
     }
 
     private String getFormattedDate(String pattern) {
-        LocalDate currentDate = TestDate; // error was here
+        LocalDate currentDate = TestDate; // mistake was here (mistake is forgot to change local date now to test date)
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return currentDate.format(formatter);
     }
