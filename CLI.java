@@ -6,8 +6,7 @@ import java.util.Scanner;
  * The CLI (Command Line Interface) class simulates a menu-driven user interface for interacting
  * with different user types such as Employee, Admin, and HR. It allows users to log in and access
  * different menus based on their role.
- * 
- * @author Simon Alexander
+ *
  * 
  */
 public class CLI {
