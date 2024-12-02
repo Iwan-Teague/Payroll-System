@@ -27,16 +27,21 @@ public class DateCheck {
         runPromotion();
     }
 
+    // changes the value of the cell in the csv file csv/csv files/completedPayslipsOrPromotion.csv
     private void changeValue(String value, int col) {
         CSVWriter.updateCSVCell(path, 0, col, value);
     }
 
+
+
+    // This method returns the current date formatted as a string based on the given pattern.
     private String getFormattedDate(String pattern) {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return currentDate.format(formatter);
     }
 
+    // checks specific conditions based on the given type and the current date.
     private boolean check(String type) {
         String month = getFormattedDate("MM");
         String day = getFormattedDate("dd");
@@ -48,33 +53,25 @@ public class DateCheck {
         };
     }
 
+    //checks if its the correct time to generate payslips and if so generates them
+    // also changes value in cell of completedPayslipsOrPromotion.csv
     private void runPayslips() {
         if ((check("payslip") == true) && (completedPayslips == false)) {
-            //payroll.PayslipGenerator payslipGenerator = new payroll.PayslipGenerator();
-            //payslipGenerator.writeCsv();
             CSVWriter csvwrite = new CSVWriter();
             csvwrite.writeCsvPaySlipGen();
-
-
-            //completedPayslips = true;
             changeValue("true", payslipsCol);
         } else if (check("payslip") == false) {
-            //completedPayslips = false;
             changeValue("false", payslipsCol);
         }
     }
 
+    // like runPayslips() but for promoting employees up the payscale
     private void runPromotion() {
         if ((check("promotion") == true) && (completedPromotion == false)) {
-            //employee.PayscalePromoter payscalePromoter = new employee.PayscalePromoter();
-            //payscalePromoter.writeToCSVPayScale();
             CSVWriter csvWrite = new CSVWriter();
             csvWrite.writeToCSVPayScale();
-
-            //completedPromotion = true;
             changeValue("true", promotionCol);
         } else if (check("promotion") == false) {
-            //completedPromotion = false;
             changeValue("false", promotionCol);
         }
     }
