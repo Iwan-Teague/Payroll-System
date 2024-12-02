@@ -1,9 +1,11 @@
-package Checkers;
+package tests;
 
 import csv.CSVWriter;
+import csv.SimpleCSVReader;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * This class checks the date. If it's the 25th day of the month, payslips are generated.
@@ -14,8 +16,12 @@ import java.time.format.DateTimeFormatter;
  * @author Samuel Luke
  */
 public class DateCheckFake {
-    public boolean completedPayslips = false;
-    public boolean completedPromotion = false;
+    private final String path = "csv/csv files/completedPayslipsOrPromotion.csv";
+    private final int payslipsCol = 0;
+    private final int promotionCol = 1;
+    private List<String[]> completed = new SimpleCSVReader().readCsvPayScale(1, path);
+    public boolean completedPayslips = Boolean.parseBoolean(completed.getFirst()[payslipsCol]);
+    public boolean completedPromotion = Boolean.parseBoolean(completed.getFirst()[promotionCol]);
     private LocalDate TestDate;
 
     // changed  completedPayslips and completedPromotion from private to public temporarly for tester class
@@ -28,10 +34,17 @@ public class DateCheckFake {
         this.TestDate = TestDate;
         runPayslips();
         runPromotion();
+        //System.out.println(completedPayslips);
+        //System.out.println(completedPromotion);
+
+    }
+
+    private void changeValue(String value, int col) {
+        CSVWriter.updateCSVCell(path, 0, col, value);
     }
 
     private String getFormattedDate(String pattern) {
-        LocalDate currentDate = TestDate; // mistake was here (mistake is forgot to change local date now to test date)
+        LocalDate currentDate = TestDate;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return currentDate.format(formatter);
     }
@@ -48,31 +61,30 @@ public class DateCheckFake {
     }
 
     private void runPayslips() {
-        if ((check("payslip") == true) && (completedPayslips == false)) {
-            //payroll.PayslipGenerator payslipGenerator = new payroll.PayslipGenerator();
-            //payslipGenerator.writeCsv();
+        // Check for payslips generation: should be on the 25th day of the month
+        if (check("payslip") && !completedPayslips) {
+            // Generate payslips logic
             CSVWriter csvwrite = new CSVWriter();
             csvwrite.writeCsvPaySlipGen();
-
-
-            completedPayslips = true;
-        } else if (check("payslip") == false) {
-            completedPayslips = false;
+            changeValue("true", payslipsCol);
+        } else if (!check("payslip")) {
+            // If it's not the 25th, update to false
+            changeValue("false", payslipsCol);
         }
     }
 
     private void runPromotion() {
-
-        if ((check("promotion") == true) && (completedPromotion == false)) {
-            //employee.PayscalePromoter payscalePromoter = new employee.PayscalePromoter();
-            //payscalePromoter.writeToCSVPayScale();
+        // Check for promotion: should be in the month of August
+        if (check("promotion") && !completedPromotion) {
+            // Promotion logic
             CSVWriter csvWrite = new CSVWriter();
             csvWrite.writeToCSVPayScale();
-
-            completedPromotion = true;
-        } else if (check("promotion") == false) {
-            completedPromotion = false;
+            changeValue("true", promotionCol);
+        } else if (!check("promotion")) {
+            // If it's not August, update to false
+            changeValue("false", promotionCol);
         }
     }
+
 
 }

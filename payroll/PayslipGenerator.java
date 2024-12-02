@@ -14,11 +14,13 @@ import java.util.Objects;
 
 /**
  * This class allows payslips to be generated for all employees.
+ * @author Samuel Luke
  */
 public class PayslipGenerator {
 
     private DecimalFormat df = new DecimalFormat("#.00");
 
+    // gets the date of the second friday of the current month
     private LocalDate getSecondFridayOfCurrentMonth() {
         // Get the current date
         LocalDate currentDate = LocalDate.now();
@@ -35,6 +37,7 @@ public class PayslipGenerator {
         return secondFriday;
     }
 
+    // gets the date of the second friday of the previous month
     private LocalDate getSecondFridayOfPreviousMonth() {
         // Get the current date
         LocalDate currentDate = LocalDate.now();
@@ -51,6 +54,7 @@ public class PayslipGenerator {
         return secondFriday;
     }
 
+    // checks if date is between 2 fridays
     private boolean CheckDate(String dateString) {
         LocalDate currentFriday = getSecondFridayOfCurrentMonth();
         LocalDate previousFriday = getSecondFridayOfPreviousMonth();
@@ -64,6 +68,7 @@ public class PayslipGenerator {
         return details;
     }
 
+    //adds up all part time hours for given employee
     private String[] getPartTimeHours(String ppsNo) {
         double hours = 0;
         double total = 0;

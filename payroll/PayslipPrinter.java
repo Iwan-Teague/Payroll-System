@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * This class prints all the payslips for a chosen employee.
+ * @author Samuel Luke
  */
 public class PayslipPrinter {
     private List<String[]> payslips = new ArrayList<>();
@@ -29,6 +30,7 @@ public class PayslipPrinter {
     }
 
 
+    // filters payslips for given employee from all payslips
     private void getEmployeePayslips() {
         for (String[] payslip : payslips) {
             if (payslip.length > 1 && payslip[1].equals(employeeName) && payslip[2].equals(employeeNumber)) {
@@ -39,6 +41,7 @@ public class PayslipPrinter {
 
 
 
+    // gets payslips for all employees
     private void getAllPayslips() {
         try (BufferedReader br = new BufferedReader(new FileReader("csv/csv files/Payslips.csv"))) {
             String line;
@@ -60,6 +63,7 @@ public class PayslipPrinter {
     }
 
 
+    // prints all of employees payslips
     private void printPayslips() {
         for (String[] payslip : employeePayslips) {
             if (payslip.length < 10) {
